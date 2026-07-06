@@ -5,7 +5,7 @@ from typing import Optional
 import argparse
 import sys
 from .converter import pixelize
-from .exceptions import PixoraError
+from .errors import PixoraError
 
 
 def build_parser() -> argparse.ArgumentParser: 

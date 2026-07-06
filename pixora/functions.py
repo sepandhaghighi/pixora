@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Tuple, Union, Optional 
 from pathlib import Path 
 from PIL import Image 
-from .exceptions import PixoraImageError, PixoraValidationError 
+from .errors import PixoraImageError, PixoraValidationError 
 
 ImageInput = Union[str, Path, Image.Image] 
 
