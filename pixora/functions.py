@@ -5,6 +5,9 @@ from __future__ import annotations
 from typing import Tuple, Union, Optional
 from pathlib import Path
 from PIL import Image
+from .params import PIXEL_SIZE_TYPE_ERROR, PIXEL_SIZE_VALUE_ERROR
+from .params import IMAGE_TYPE_ERROR, IMAGE_INPUT_TYPE_ERROR
+from .params import PATH_TYPE_ERROR, IMAGE_NOT_FOUND_ERROR, UNSUPPORTED_IMAGE_ERROR
 from .errors import PixoraImageError, PixoraValidationError
 
 ImageInput = Union[str, Path, Image.Image]
@@ -21,12 +24,12 @@ def load_image(image: ImageInput) -> Image.Image:
         return image.copy()
     path = ensure_path(image)
     if not path.exists():
-        raise PixoraImageError(f"Image not found: {path}")
+        raise PixoraImageError(IMAGE_NOT_FOUND_ERROR.format(path=path))
     try:
         img = Image.open(path)
         img.load()
     except OSError as exc:
-        raise PixoraImageError(f"Unsupported image: {path}") from exc
+        raise PixoraImageError(UNSUPPORTED_IMAGE_ERROR.format(path=path)) from exc
     return img.convert("RGBA")
 
 
@@ -52,9 +55,9 @@ def validate_pixel_size(pixel_size: int) -> None:
     :param pixel_size: pixel size
     """
     if not isinstance(pixel_size, int):
-        raise PixoraValidationError("Pixel size must be an integer.")
+        raise PixoraValidationError(PIXEL_SIZE_TYPE_ERROR)
     if pixel_size <= 0:
-        raise PixoraValidationError("Pixel size must be greater than zero.")
+        raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
 
 
 def validate_image(image: Image.Image) -> None:
@@ -64,7 +67,27 @@ def validate_image(image: Image.Image) -> None:
     :param image: input image
     """
     if not isinstance(image, Image.Image):
-        raise PixoraValidationError("Expected a PIL.Image.Image instance.")
+        raise PixoraValidationError(IMAGE_TYPE_ERROR)
+
+
+def validate_image_input(image: Any):
+    """
+    Validate image input.
+
+    :param image: image
+    """
+    if not isinstance(image, (str, Path, Image.Image)):
+        raise PixoraValidationError(IMAGE_INPUT_TYPE_ERROR)
+
+
+def validate_path(path: Any):
+    """
+    Validate a path.
+
+    :param path: file path
+    """
+    if not isinstance(path, (str, Path)):
+        raise PixoraValidationError(PATH_TYPE_ERROR)
 
 
 def ensure_path(path: Union[str, Path]) -> Path:
@@ -73,6 +96,7 @@ def ensure_path(path: Union[str, Path]) -> Path:
 
     :param path: file path
     """
+    validate_path(path)
     return Path(path).expanduser()
 
 
