@@ -52,7 +52,8 @@ class Converter:
         return save_image(result, output)
 
 
-def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]] = None, pixel_size: int = DEFAULT_PIXEL_SIZE) -> PILImage:
+def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]]
+             = None, pixel_size: int = DEFAULT_PIXEL_SIZE) -> PILImage:
     """
     Convert an image into pixel art.
 

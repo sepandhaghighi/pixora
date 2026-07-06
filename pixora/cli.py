@@ -16,7 +16,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("output", nargs="?", metavar="OUTPUT", help="Output image.")
     parser.add_argument("-i", "--input", dest="input_opt", metavar="INPUT", help="Input image.")
     parser.add_argument("-o", "--output", dest="output_opt", metavar="OUTPUT", help="Output image.")
-    parser.add_argument("-p", "--pixel-size", type=int, default=DEFAULT_PIXEL_SIZE, help="Pixel size (default: {pixel_size}).".format(pixel_size=DEFAULT_PIXEL_SIZE))
+    parser.add_argument(
+        "-p",
+        "--pixel-size",
+        type=int,
+        default=DEFAULT_PIXEL_SIZE,
+        help="Pixel size (default: {pixel_size}).".format(
+            pixel_size=DEFAULT_PIXEL_SIZE))
     parser.add_argument("-v", "--version", action="version", version=PIXORA_VERSION)
     return parser
 
@@ -44,7 +50,7 @@ def _resolve_argument(
 def main(argv: Optional[List[str]] = None) -> int:
     """
     CLI entry point.
-    
+
     :param argv: arguments
     """
     parser = build_parser()
