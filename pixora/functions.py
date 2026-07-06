@@ -22,7 +22,7 @@ def load_image(image: ImageInput) -> Image.Image:
     if isinstance(image, Image.Image):
         validate_image(image)
         return image.copy()
-    path = ensure_path(image)
+    path = normalize_path(image)
     if not path.exists():
         raise PixoraImageError(IMAGE_NOT_FOUND_ERROR.format(path=path))
     try:
@@ -41,7 +41,7 @@ def save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     :param output: output file path
     """
     validate_image(image)
-    output = ensure_path(output)
+    output = normalize_path(output)
     if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
@@ -90,7 +90,7 @@ def validate_path(path: Any):
         raise PixoraValidationError(PATH_TYPE_ERROR)
 
 
-def ensure_path(path: Union[str, Path]) -> Path:
+def normalize_path(path: Union[str, Path]) -> Path:
     """
     Convert a path-like object to a Path.
 
