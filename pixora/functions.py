@@ -2,85 +2,87 @@
 """pixora functions."""
 
 from __future__ import annotations
-from typing import Tuple, Union, Optional 
-from pathlib import Path 
-from PIL import Image 
-from .errors import PixoraImageError, PixoraValidationError 
+from typing import Tuple, Union, Optional
+from pathlib import Path
+from PIL import Image
+from .errors import PixoraImageError, PixoraValidationError
 
-ImageInput = Union[str, Path, Image.Image] 
+ImageInput = Union[str, Path, Image.Image]
 
-def load_image(image: ImageInput) -> Image.Image: 
-    """ 
-    Load an image. 
 
-    :param image: input image 
-    """ 
-    if isinstance(image, Image.Image): 
-        validate_image(image) 
-        return image.copy() 
-    path = ensure_path(image) 
-    if not path.exists(): 
+def load_image(image: ImageInput) -> Image.Image:
+    """
+    Load an image.
+
+    :param image: input image
+    """
+    if isinstance(image, Image.Image):
+        validate_image(image)
+        return image.copy()
+    path = ensure_path(image)
+    if not path.exists():
         raise PixoraImageError(f"Image not found: {path}")
-    try: 
+    try:
         img = Image.open(path)
         img.load()
-    except OSError as exc: 
+    except OSError as exc:
         raise PixoraImageError(f"Unsupported image: {path}") from exc
-    return img.convert("RGBA") 
-    
-def save_image(image: Image.Image, output: Union[str, Path]) -> Path: 
+    return img.convert("RGBA")
+
+
+def save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     """
     Save an image.
-    
+
     :param image: input image
-    :param output: output file path 
+    :param output: output file path
     """
     validate_image(image)
     output = ensure_path(output)
-    if output.parent: 
+    if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
-    return output 
+    return output
 
 
-def validate_pixel_size(pixel_size: int) -> None: 
+def validate_pixel_size(pixel_size: int) -> None:
     """
     Validate a pixel size.
-    
-    :param pixel_size: pixel size 
-    """ 
-    if not isinstance(pixel_size, int): 
+
+    :param pixel_size: pixel size
+    """
+    if not isinstance(pixel_size, int):
         raise PixoraValidationError("Pixel size must be an integer.")
     if pixel_size <= 0:
         raise PixoraValidationError("Pixel size must be greater than zero.")
 
 
-def validate_image(image: Image.Image) -> None: 
+def validate_image(image: Image.Image) -> None:
     """
     Validate a Pillow image.
-    
-    :param image: input image 
+
+    :param image: input image
     """
-    if not isinstance(image, Image.Image): 
-        raise PixoraValidationError("Expected a PIL.Image.Image instance.") 
+    if not isinstance(image, Image.Image):
+        raise PixoraValidationError("Expected a PIL.Image.Image instance.")
 
 
 def ensure_path(path: Union[str, Path]) -> Path:
     """
     Convert a path-like object to a Path.
-    
+
     :param path: file path
-    """ 
-    return Path(path).expanduser() 
+    """
+    return Path(path).expanduser()
 
 
 def calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tuple[int, int]:
     """
     Calculate the temporary downscaled dimensions.
-    
+
     :param width: image width
     :param height: image height
     :param pixel_size: pixel size
-    """ 
+    """
     validate_pixel_size(pixel_size)
     return max(1, width // pixel_size), max(1, height // pixel_size)
