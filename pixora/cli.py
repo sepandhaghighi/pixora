@@ -20,8 +20,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
-    """ CLI entry point. :param argv: arguments """
-    parser = build_parser() args = parser.parse_args(argv)
+    """
+    CLI entry point.
+    
+    :param argv: arguments
+    """
+    parser = build_parser()
+    args = parser.parse_args(argv)
     try:
         pixelize(args.input, output=args.output, pixel_size=args.pixel_size)
     except PixoraError as exc:
