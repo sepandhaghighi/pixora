@@ -4,13 +4,15 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
 from .functions import ImageInput, load_image, save_image
-from .functions import calculate_pixel_dimensions, validate_pixel_size
+from .functions import calculate_pixel_dimensions
+from .functions import validate_pixel_size, validate_path, validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
 
 
 class Converter:
-    """ Convert images into pixel art using nearest-neighbor scaling.
+    """
+    Convert images into pixel art using nearest-neighbor scaling.
 
     Parameters
     ----------
@@ -28,6 +30,7 @@ class Converter:
 
         :param image: input image
         """
+        validate_image_input(image)
         img = load_image(image)
         width, height = img.size
         small_width, small_height = calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size, )
@@ -42,6 +45,8 @@ class Converter:
         :param image: input image
         :param output: file path
         """
+        validate_image_input(image)
+        validate_path(output)
         result = self.convert(image)
         return save_image(result, output)
 
