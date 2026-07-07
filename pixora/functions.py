@@ -13,7 +13,7 @@ from .errors import PixoraImageError, PixoraValidationError
 ImageInput = Union[str, Path, Image.Image]
 
 
-def load_image(image: ImageInput) -> Image.Image:
+def _load_image(image: ImageInput) -> Image.Image:
     """
     Load an image.
 
