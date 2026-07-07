@@ -33,7 +33,7 @@ def _load_image(image: ImageInput) -> Image.Image:
     return img.convert("RGBA")
 
 
-def save_image(image: Image.Image, output: Union[str, Path]) -> Path:
+def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     """
     Save an image.
 

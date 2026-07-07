@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
 from .params import DEFAULT_PIXEL_SIZE
-from .functions import ImageInput, _load_image, save_image
+from .functions import ImageInput, _load_image, _save_image
 from .functions import calculate_pixel_dimensions
 from .functions import validate_pixel_size, validate_path, validate_image_input
 if TYPE_CHECKING:
@@ -49,7 +49,7 @@ class Converter:
         validate_image_input(image)
         validate_path(output)
         result = self.convert(image)
-        return save_image(result, output)
+        return _save_image(result, output)
 
 
 def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]]
@@ -64,5 +64,5 @@ def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]]
     converter = Converter(pixel_size=pixel_size)
     result = converter.convert(image)
     if output is not None:
-        save_image(result, output)
+        _save_image(result, output)
     return result
