@@ -100,7 +100,7 @@ def _normalize_path(path: Union[str, Path]) -> Path:
     return Path(path).expanduser()
 
 
-def calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tuple[int, int]:
+def _calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tuple[int, int]:
     """
     Calculate the temporary downscaled dimensions.
 

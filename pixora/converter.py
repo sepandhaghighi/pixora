@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
 from .params import DEFAULT_PIXEL_SIZE
 from .functions import ImageInput, _load_image, _save_image
-from .functions import calculate_pixel_dimensions
+from .functions import _calculate_pixel_dimensions
 from .functions import _validate_pixel_size, _validate_path, _validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
@@ -34,7 +34,7 @@ class Converter:
         _validate_image_input(image)
         img = _load_image(image)
         width, height = img.size
-        small_width, small_height = calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size, )
+        small_width, small_height = _calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size)
         img = img.resize((small_width, small_height), Image.Resampling.NEAREST, )
         img = img.resize((width, height), Image.Resampling.NEAREST, )
         return img
