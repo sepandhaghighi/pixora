@@ -48,7 +48,7 @@ def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     return output
 
 
-def validate_pixel_size(pixel_size: int) -> None:
+def _validate_pixel_size(pixel_size: int) -> None:
     """
     Validate a pixel size.
 
@@ -108,5 +108,5 @@ def calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tupl
     :param height: image height
     :param pixel_size: pixel size
     """
-    validate_pixel_size(pixel_size)
+    _validate_pixel_size(pixel_size)
     return max(1, width // pixel_size), max(1, height // pixel_size)

@@ -6,7 +6,7 @@ from PIL import Image
 from .params import DEFAULT_PIXEL_SIZE
 from .functions import ImageInput, _load_image, _save_image
 from .functions import calculate_pixel_dimensions
-from .functions import validate_pixel_size, validate_path, validate_image_input
+from .functions import _validate_pixel_size, validate_path, validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
 
@@ -22,7 +22,7 @@ class Converter:
     """
 
     def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
-        validate_pixel_size(pixel_size)
+        _validate_pixel_size(pixel_size)
         self.pixel_size = pixel_size
 
     def convert(self, image: ImageInput) -> PILImage:
