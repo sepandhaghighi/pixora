@@ -6,7 +6,7 @@ from PIL import Image
 from .params import DEFAULT_PIXEL_SIZE
 from .functions import ImageInput, _load_image, _save_image
 from .functions import calculate_pixel_dimensions
-from .functions import _validate_pixel_size, validate_path, validate_image_input
+from .functions import _validate_pixel_size, validate_path, _validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
 
@@ -31,7 +31,7 @@ class Converter:
 
         :param image: input image
         """
-        validate_image_input(image)
+        _validate_image_input(image)
         img = _load_image(image)
         width, height = img.size
         small_width, small_height = calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size, )
@@ -46,7 +46,7 @@ class Converter:
         :param image: input image
         :param output: file path
         """
-        validate_image_input(image)
+        _validate_image_input(image)
         validate_path(output)
         result = self.convert(image)
         return _save_image(result, output)

@@ -70,7 +70,7 @@ def _validate_image(image: Image.Image) -> None:
         raise PixoraValidationError(IMAGE_TYPE_ERROR)
 
 
-def validate_image_input(image: Any):
+def _validate_image_input(image: Any):
     """
     Validate image input.
 
