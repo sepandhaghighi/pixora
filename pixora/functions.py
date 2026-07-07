@@ -48,7 +48,7 @@ def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     return output
 
 
-def _validate_pixel_size(pixel_size: int) -> None:
+def _validate_pixel_size(pixel_size: Any) -> None:
     """
     Validate a pixel size.
 
@@ -60,7 +60,7 @@ def _validate_pixel_size(pixel_size: int) -> None:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
 
 
-def _validate_image(image: Image.Image) -> None:
+def _validate_image(image: Any) -> None:
     """
     Validate a Pillow image.
 
