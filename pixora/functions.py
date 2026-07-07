@@ -80,7 +80,7 @@ def _validate_image_input(image: Any):
         raise PixoraValidationError(IMAGE_INPUT_TYPE_ERROR)
 
 
-def validate_path(path: Any):
+def _validate_path(path: Any):
     """
     Validate a path.
 
@@ -96,7 +96,7 @@ def normalize_path(path: Union[str, Path]) -> Path:
 
     :param path: file path
     """
-    validate_path(path)
+    _validate_path(path)
     return Path(path).expanduser()
 
 
