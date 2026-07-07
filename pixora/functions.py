@@ -20,7 +20,7 @@ def _load_image(image: ImageInput) -> Image.Image:
     :param image: input image
     """
     if isinstance(image, Image.Image):
-        validate_image(image)
+        _validate_image(image)
         return image.copy()
     path = normalize_path(image)
     if not path.exists():
@@ -40,7 +40,7 @@ def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     :param image: input image
     :param output: output file path
     """
-    validate_image(image)
+    _validate_image(image)
     output = normalize_path(output)
     if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,7 @@ def _validate_pixel_size(pixel_size: int) -> None:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
 
 
-def validate_image(image: Image.Image) -> None:
+def _validate_image(image: Image.Image) -> None:
     """
     Validate a Pillow image.
 
