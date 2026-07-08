@@ -4,9 +4,17 @@ from __future__ import annotations
 from typing import Optional
 import argparse
 import sys
+from art import tprint
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
+from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
 from .errors import PixoraError
+
+def _print_pixora_info() -> None:
+    """Print Pixora info."""
+    tprint("Pixora")
+    tprint("V:" + PIXORA_VERSION)
+    print(PIXORA_OVERVIEW)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -24,6 +32,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Pixel size (default: {pixel_size}).".format(
             pixel_size=DEFAULT_PIXEL_SIZE))
     parser.add_argument("-v", "--version", action="version", version=PIXORA_VERSION)
+    parser.add_argument('--info', help='Print info.', nargs="?", const=1)
     return parser
 
 
@@ -55,6 +64,9 @@ def main(argv: Optional[List[str]] = None) -> None:
     """
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.info:
+        _print_pixora_info()
+        return
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
