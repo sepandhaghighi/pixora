@@ -4,9 +4,9 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
 from .params import DEFAULT_PIXEL_SIZE
-from .functions import ImageInput, load_image, save_image
-from .functions import calculate_pixel_dimensions
-from .functions import validate_pixel_size, validate_path, validate_image_input
+from .functions import ImageInput, _load_image, _save_image
+from .functions import _calculate_pixel_dimensions
+from .functions import _validate_pixel_size, _validate_path, _validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
 
@@ -22,7 +22,7 @@ class Converter:
     """
 
     def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
-        validate_pixel_size(pixel_size)
+        _validate_pixel_size(pixel_size)
         self.pixel_size = pixel_size
 
     def convert(self, image: ImageInput) -> PILImage:
@@ -31,10 +31,10 @@ class Converter:
 
         :param image: input image
         """
-        validate_image_input(image)
-        img = load_image(image)
+        _validate_image_input(image)
+        img = _load_image(image)
         width, height = img.size
-        small_width, small_height = calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size, )
+        small_width, small_height = _calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size)
         img = img.resize((small_width, small_height), Image.Resampling.NEAREST, )
         img = img.resize((width, height), Image.Resampling.NEAREST, )
         return img
@@ -46,14 +46,17 @@ class Converter:
         :param image: input image
         :param output: file path
         """
-        validate_image_input(image)
-        validate_path(output)
+        _validate_image_input(image)
+        _validate_path(output)
         result = self.convert(image)
-        return save_image(result, output)
+        return _save_image(result, output)
 
 
-def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]]
-             = None, pixel_size: int = DEFAULT_PIXEL_SIZE) -> PILImage:
+def pixelize(
+    image: ImageInput,
+    *, 
+    output: Optional[Union[str, Path]]= None,
+    pixel_size: int = DEFAULT_PIXEL_SIZE) -> PILImage:
     """
     Convert an image into pixel art.
 
@@ -64,5 +67,5 @@ def pixelize(image: ImageInput, *, output: Optional[Union[str, Path]]
     converter = Converter(pixel_size=pixel_size)
     result = converter.convert(image)
     if output is not None:
-        save_image(result, output)
+        _save_image(result, output)
     return result

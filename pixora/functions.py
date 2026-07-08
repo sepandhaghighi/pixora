@@ -13,16 +13,16 @@ from .errors import PixoraImageError, PixoraValidationError
 ImageInput = Union[str, Path, Image.Image]
 
 
-def load_image(image: ImageInput) -> Image.Image:
+def _load_image(image: ImageInput) -> Image.Image:
     """
     Load an image.
 
     :param image: input image
     """
     if isinstance(image, Image.Image):
-        validate_image(image)
+        _validate_image(image)
         return image.copy()
-    path = normalize_path(image)
+    path = _normalize_path(image)
     if not path.exists():
         raise PixoraImageError(IMAGE_NOT_FOUND_ERROR.format(path=path))
     try:
@@ -33,22 +33,22 @@ def load_image(image: ImageInput) -> Image.Image:
     return img.convert("RGBA")
 
 
-def save_image(image: Image.Image, output: Union[str, Path]) -> Path:
+def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     """
     Save an image.
 
     :param image: input image
     :param output: output file path
     """
-    validate_image(image)
-    output = normalize_path(output)
+    _validate_image(image)
+    output = _normalize_path(output)
     if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
     return output
 
 
-def validate_pixel_size(pixel_size: int) -> None:
+def _validate_pixel_size(pixel_size: Any) -> None:
     """
     Validate a pixel size.
 
@@ -60,7 +60,7 @@ def validate_pixel_size(pixel_size: int) -> None:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
 
 
-def validate_image(image: Image.Image) -> None:
+def _validate_image(image: Any) -> None:
     """
     Validate a Pillow image.
 
@@ -70,7 +70,7 @@ def validate_image(image: Image.Image) -> None:
         raise PixoraValidationError(IMAGE_TYPE_ERROR)
 
 
-def validate_image_input(image: Any):
+def _validate_image_input(image: Any):
     """
     Validate image input.
 
@@ -80,7 +80,7 @@ def validate_image_input(image: Any):
         raise PixoraValidationError(IMAGE_INPUT_TYPE_ERROR)
 
 
-def validate_path(path: Any):
+def _validate_path(path: Any):
     """
     Validate a path.
 
@@ -90,17 +90,17 @@ def validate_path(path: Any):
         raise PixoraValidationError(PATH_TYPE_ERROR)
 
 
-def normalize_path(path: Union[str, Path]) -> Path:
+def _normalize_path(path: Union[str, Path]) -> Path:
     """
     Convert a path-like object to a Path.
 
     :param path: file path
     """
-    validate_path(path)
+    _validate_path(path)
     return Path(path).expanduser()
 
 
-def calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tuple[int, int]:
+def _calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tuple[int, int]:
     """
     Calculate the temporary downscaled dimensions.
 
@@ -108,5 +108,5 @@ def calculate_pixel_dimensions(width: int, height: int, pixel_size: int) -> Tupl
     :param height: image height
     :param pixel_size: pixel size
     """
-    validate_pixel_size(pixel_size)
+    _validate_pixel_size(pixel_size)
     return max(1, width // pixel_size), max(1, height // pixel_size)
