@@ -23,7 +23,7 @@ class Converter:
 
     def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
         _validate_pixel_size(pixel_size)
-        self.pixel_size = pixel_size
+        self._pixel_size = pixel_size
 
     def convert(self, image: ImageInput) -> PILImage:
         """
@@ -34,7 +34,7 @@ class Converter:
         _validate_image_input(image)
         img = _load_image(image)
         width, height = img.size
-        small_width, small_height = _calculate_pixel_dimensions(width=width, height=height, pixel_size=self.pixel_size)
+        small_width, small_height = _calculate_pixel_dimensions(width=width, height=height, pixel_size=self._pixel_size)
         img = img.resize((small_width, small_height), Image.Resampling.NEAREST, )
         img = img.resize((width, height), Image.Resampling.NEAREST, )
         return img
