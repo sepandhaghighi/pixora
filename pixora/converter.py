@@ -39,7 +39,7 @@ class Converter:
         img = img.resize((width, height), Image.Resampling.NEAREST, )
         return img
 
-    def save(self, image: ImageInput, output: Union[str, Path]) -> Path:
+    def save(self, image: ImageInput, output: Union[str, Path]) -> None:
         """
         Convert an image and save the result.
 
@@ -49,7 +49,7 @@ class Converter:
         _validate_image_input(image)
         _validate_path(output)
         result = self.convert(image)
-        return _save_image(result, output)
+        _save_image(result, output)
 
 
 def pixelize(
