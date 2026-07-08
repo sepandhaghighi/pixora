@@ -33,7 +33,7 @@ def _load_image(image: ImageInput) -> Image.Image:
     return img.convert("RGBA")
 
 
-def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
+def _save_image(image: Image.Image, output: Union[str, Path]) -> None:
     """
     Save an image.
 
@@ -45,7 +45,6 @@ def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
-    return output
 
 
 def _validate_pixel_size(pixel_size: Any) -> None:
