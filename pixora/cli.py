@@ -17,7 +17,7 @@ def _print_pixora_info() -> None:
     print(PIXORA_OVERVIEW)
 
 
-def build_parser() -> argparse.ArgumentParser:
+def _build_parser() -> argparse.ArgumentParser:
     """Create the CLI argument parser."""
     parser = argparse.ArgumentParser(prog="pixora", description="Convert images into pixel art.")
     parser.add_argument("input", nargs="?", metavar="INPUT", help="Input image.")
@@ -62,7 +62,7 @@ def main(argv: Optional[List[str]] = None) -> None:
 
     :param argv: arguments
     """
-    parser = build_parser()
+    parser = _build_parser()
     args = parser.parse_args(argv)
     if args.info:
         _print_pixora_info()
