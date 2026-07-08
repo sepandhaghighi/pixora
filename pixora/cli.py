@@ -10,6 +10,7 @@ from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
 from .errors import PixoraError
 
+
 def _print_pixora_info() -> None:
     """Print Pixora info."""
     tprint("Pixora")
