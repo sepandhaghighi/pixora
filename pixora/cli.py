@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Optional
 import argparse
 import sys
-from .params import DEFAULT_PIXEL_SIZE
+from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .converter import pixelize
 from .errors import PixoraError
 
@@ -47,7 +47,7 @@ def _resolve_argument(
     return value
 
 
-def main(argv: Optional[List[str]] = None) -> int:
+def main(argv: Optional[List[str]] = None) -> None:
     """
     CLI entry point.
 
@@ -61,10 +61,5 @@ def main(argv: Optional[List[str]] = None) -> int:
         pixelize(input_image, output=output_image, pixel_size=args.pixel_size)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
-    except KeyboardInterrupt:
-        parser.exit(130)
-        return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+    except (KeyboardInterrupt, EOFError):
+        parser.exit(130, f"{GOODBYE_MESSAGE}\n")

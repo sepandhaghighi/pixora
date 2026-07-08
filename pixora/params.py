@@ -18,3 +18,5 @@ IMAGE_INPUT_TYPE_ERROR = "Image must be a str, pathlib.Path, or PIL.Image.Image.
 PATH_TYPE_ERROR = "Expected a str or pathlib.Path."
 IMAGE_NOT_FOUND_ERROR = "Image not found: {path}"
 UNSUPPORTED_IMAGE_ERROR = "Unsupported image: {}"
+
+EXIT_MESSAGE = "Goodbye!"
