@@ -75,4 +75,4 @@ def main(argv: Optional[List[str]] = None) -> None:
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
     except (KeyboardInterrupt, EOFError):
-        parser.exit(130, f"{GOODBYE_MESSAGE}\n")
+        parser.exit(130, f"{EXIT_MESSAGE}\n")
