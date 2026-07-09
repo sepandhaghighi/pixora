@@ -6,7 +6,7 @@ from typing import Tuple, Union, Optional
 from pathlib import Path
 from PIL import Image
 from .params import PIXEL_SIZE_TYPE_ERROR, PIXEL_SIZE_VALUE_ERROR
-from .params import IMAGE_TYPE_ERROR, IMAGE_INPUT_TYPE_ERROR
+from .params import IMAGE_TYPE_ERROR, IMAGE_INPUT_TYPE_ERROR, IMAGE_SAVE_ERROR
 from .params import PATH_TYPE_ERROR, IMAGE_NOT_FOUND_ERROR, UNSUPPORTED_IMAGE_ERROR
 from .errors import PixoraImageError, PixoraValidationError
 
@@ -33,7 +33,7 @@ def _load_image(image: ImageInput) -> Image.Image:
     return img.convert("RGBA")
 
 
-def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
+def _save_image(image: Image.Image, output: Union[str, Path]) -> None:
     """
     Save an image.
 
@@ -44,8 +44,10 @@ def _save_image(image: Image.Image, output: Union[str, Path]) -> Path:
     output = _normalize_path(output)
     if output.parent:
         output.parent.mkdir(parents=True, exist_ok=True)
-    image.save(output)
-    return output
+    try:
+        image.save(output)
+    except Exception as exc:
+        raise PixoraImageError(IMAGE_SAVE_ERROR.format(path=output)) from exc
 
 
 def _validate_pixel_size(pixel_size: Any) -> None:
