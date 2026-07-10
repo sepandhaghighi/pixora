@@ -38,7 +38,7 @@ def test_convert_pillow_image_returns_new_image():
     assert isinstance(result, Image.Image)
     assert result is not image
     assert result.size == image.size
-    assert result.mode == "RGBA"
+    assert result.mode == "RGB"
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])
