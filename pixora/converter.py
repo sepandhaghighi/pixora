@@ -1,4 +1,5 @@
-""" Image conversion utilities. """
+"""Image conversion utilities."""
+
 from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING, Union, Optional
@@ -22,6 +23,11 @@ class Converter:
     """
 
     def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
+        """
+        Converter initiator.
+
+        :param pixel_size: pixel size
+        """
         _validate_pixel_size(pixel_size)
         self._pixel_size = pixel_size
 
