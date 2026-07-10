@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Pixora: TODO</h1>
+<h1>Pixora: A Python Library for Pixel Art Conversion</h1>
 <br/>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
 <a href="https://github.com/sepandhaghighi/pixora"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sepandhaghighi/pixora"></a>
@@ -9,7 +9,7 @@
 ## Overview	
 
 <p align="justify">
-TODO
+Pixora is a lightweight Python library and command-line tool for converting ordinary images into retro-style pixel art. Built on top of Pillow, it provides a simple API for pixelizing images with customizable pixel sizes while supporting both file paths and in-memory objects. Whether you are creating game assets, generating pixelated avatars, or adding a nostalgic visual effect to your images, Pixora offers a fast, and easy-to-use solution for both scripts and terminal workflows.
 </p>
 
 <table>
@@ -52,7 +52,22 @@ TODO
 
 ## Usage
 
-TODO
+### Library
+
+```python
+from pixora import pixelize
+pixelize("input.png", output="output.png", pixel_size=12)
+image = pixelize("input.png", pixel_size=12)
+image.show()
+```
+
+### CLI
+
+```bash
+pixora input.png output.png
+
+pixora input.png output.png --pixel-size=12
+```
 
 ## Issues & Bug Reports			
 
