@@ -24,7 +24,7 @@ class Converter:
 
     def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
         """
-        Initiator.
+        Initiate converter.
 
         :param pixel_size: pixel size
         """
