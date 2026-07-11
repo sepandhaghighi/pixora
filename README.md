@@ -4,6 +4,7 @@
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
 <a href="https://github.com/sepandhaghighi/pixora"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sepandhaghighi/pixora"></a>
 <a href="https://badge.fury.io/py/pixora"><img src="https://badge.fury.io/py/pixora.svg" alt="PyPI version"></a>
+<a href="https://codecov.io/gh/sepandhaghighi/pixora"><img src="https://codecov.io/gh/sepandhaghighi/pixora/graph/badge.svg?token=Bxwiv64q4n"></a>
 </div>			
 				
 ## Overview	
