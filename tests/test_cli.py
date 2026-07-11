@@ -16,16 +16,22 @@ def test_build_parser():
     assert parser.prog == "pixora"
 
 
-def test_resolve_argument_prefers_positional():
+def test_resolve_argument_prefers_optional():
     parser = _build_parser()
 
-    assert _resolve_argument(parser, "positional.png", "optional.png", "input") == "positional.png"
+    assert _resolve_argument(parser, "positional.png", "optional.png", "input") == "optional.png"
 
 
 def test_resolve_argument_uses_optional():
     parser = _build_parser()
 
     assert _resolve_argument(parser, None, "optional.png", "input") == "optional.png"
+
+
+def test_resolve_argument_uses_positional():
+    parser = _build_parser()
+
+    assert _resolve_argument(parser, "positional.png", None, "input") == "positional.png"
 
 
 def test_resolve_argument_missing():
