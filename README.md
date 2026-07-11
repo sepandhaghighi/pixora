@@ -4,6 +4,7 @@
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
 <a href="https://github.com/sepandhaghighi/pixora"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sepandhaghighi/pixora"></a>
 <a href="https://badge.fury.io/py/pixora"><img src="https://badge.fury.io/py/pixora.svg" alt="PyPI version"></a>
+<a href="https://codecov.io/gh/sepandhaghighi/pixora"><img src="https://codecov.io/gh/sepandhaghighi/pixora/graph/badge.svg?token=Bxwiv64q4n"></a>
 </div>			
 				
 ## Overview	
@@ -36,6 +37,13 @@ Pixora is a lightweight Python library and command-line tool for converting ordi
 		<td align="center"><img src="https://github.com/sepandhaghighi/pixora/actions/workflows/test.yml/badge.svg?branch=main"></td>
 		<td align="center"><img src="https://github.com/sepandhaghighi/pixora/actions/workflows/test.yml/badge.svg?branch=dev"></td>
 	</tr>
+</table>
+<table>
+    <tr> 
+        <td align="center">Code Quality</td>
+        <td align="center"><a href="https://www.codefactor.io/repository/github/sepandhaghighi/pixora"><img src="https://www.codefactor.io/repository/github/sepandhaghighi/pixora/badge" alt="CodeFactor"></a></td>
+        <td align="center"><a href="https://app.codacy.com/gh/sepandhaghighi/pixora/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/50dc58daa2c94c16b823b8fb406d2283"></a></td>
+    </tr>
 </table>
 
 ## Installation		
