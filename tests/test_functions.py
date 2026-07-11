@@ -17,9 +17,6 @@ def test_converter_accepts_valid_pixel_sizes(pixel_size):
     assert converter._pixel_size == pixel_size
 
 
-
-
-
 def test_convert_pillow_image_returns_new_image():
     image = Image.new("RGB", (64, 64), "red")
 
@@ -29,9 +26,6 @@ def test_convert_pillow_image_returns_new_image():
     assert result is not image
     assert result.size == image.size
     assert result.mode == "RGB"
-
-
-
 
 
 def test_convert_image_from_file(tmp_path):
