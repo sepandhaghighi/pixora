@@ -38,6 +38,13 @@ Pixora is a lightweight Python library and command-line tool for converting ordi
 		<td align="center"><img src="https://github.com/sepandhaghighi/pixora/actions/workflows/test.yml/badge.svg?branch=dev"></td>
 	</tr>
 </table>
+<table>
+    <tr> 
+        <td align="center">Code Quality</td>
+        <td align="center"><a href="https://www.codefactor.io/repository/github/sepandhaghighi/pixora"><img src="https://www.codefactor.io/repository/github/sepandhaghighi/pixora/badge" alt="CodeFactor"></a></td>
+        <td align="center"><a href="https://app.codacy.com/gh/sepandhaghighi/pixora/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/50dc58daa2c94c16b823b8fb406d2283"></a></td>
+    </tr>
+</table>
 
 ## Installation		
 
