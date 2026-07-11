@@ -36,7 +36,10 @@ setup(
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/pixora'
     },
-    install_requires=[],
+    install_requires=[
+        'Pillow>=9.2.0',
+        'art>=6.0'
+    ],
     python_requires='>=3.8',
     classifiers=[
         'Development Status :: 3 - Alpha',
