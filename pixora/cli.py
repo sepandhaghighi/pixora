@@ -33,7 +33,7 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Pixel size (default: {pixel_size}).".format(
             pixel_size=DEFAULT_PIXEL_SIZE))
     parser.add_argument("-v", "--version", action="version", version=PIXORA_VERSION)
-    parser.add_argument('--info', help='Print info.', nargs="?", const=1)
+    parser.add_argument("--info", help="Print info.", nargs="?", const=1)
     return parser
 
 
@@ -51,7 +51,7 @@ def _resolve_argument(
     :param optional: optional argument
     :param name: argument name
     """
-    value = positional or optional
+    value = optional or positional
     if value is None:
         parser.error(f"{name} is required.")
     return value
