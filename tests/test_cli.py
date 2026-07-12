@@ -8,7 +8,7 @@ from pixora.cli import (
     _resolve_argument,
     main,
 )
-from pixora import PixoraError
+from pixora import NearestNeighbor, PixoraError
 
 
 def test_build_parser():
