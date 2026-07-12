@@ -5,6 +5,7 @@ from typing import Optional
 import argparse
 import sys
 from art import tprint
+from .algorithms import NearestNeighbor
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
@@ -71,7 +72,8 @@ def main(argv: Optional[List[str]] = None) -> None:
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
-        pixelize(input_image, output=output_image, pixel_size=args.pixel_size)
+        algorithm = NearestNeighbor(pixel_size=args.pixel_size)
+        pixelize(input_image, output=output_image, algorithm=algorithm)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
     except (KeyboardInterrupt, EOFError):
