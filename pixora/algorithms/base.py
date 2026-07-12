@@ -9,9 +9,7 @@ if TYPE_CHECKING:
 
 
 class Algorithm(ABC):
-    """
-    Base class for all Pixora algorithms.
-    """
+    """Base class for all Pixora algorithms."""
 
     @abstractmethod
     def apply(self, image: PILImage) -> PILImage:
