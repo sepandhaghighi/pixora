@@ -4,10 +4,10 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
-from .params import DEFAULT_PIXEL_SIZE
+from .algorithms import Algorithm
+from .algorithms import NearestNeighbor
 from .functions import ImageInput, _load_image, _save_image
-from .functions import _calculate_pixel_dimensions
-from .functions import _validate_pixel_size, _validate_path, _validate_image_input
+from .functions import _validate_path, _validate_image_input
 if TYPE_CHECKING:
     from PIL.Image import Image as PILImage
 
@@ -22,28 +22,25 @@ class Converter:
     Size of the generated pixels.
     """
 
-    def __init__(self, pixel_size: int = DEFAULT_PIXEL_SIZE) -> None:
+    def __init__(self, algorithm: Optional[Algorithm] = None) -> None:
         """
         Initiate converter.
 
-        :param pixel_size: pixel size
+        :param algorithm: conversion algorithm
         """
-        _validate_pixel_size(pixel_size)
-        self._pixel_size = pixel_size
+        if algorithm is None:
+            algorithm = NearestNeighbor()
+        self._algorithm = algorithm
 
     def convert(self, image: ImageInput) -> PILImage:
         """
-        Convert an image into pixel art.
+        Convert an image.
 
         :param image: input image
         """
         _validate_image_input(image)
         img = _load_image(image)
-        width, height = img.size
-        small_width, small_height = _calculate_pixel_dimensions(width=width, height=height, pixel_size=self._pixel_size)
-        img = img.resize((small_width, small_height), Image.Resampling.NEAREST, )
-        img = img.resize((width, height), Image.Resampling.NEAREST, )
-        return img
+        return self._algorithm.apply(img)
 
     def save(self, image: ImageInput, output: Union[str, Path]) -> None:
         """
@@ -62,15 +59,15 @@ def pixelize(
         image: ImageInput,
         *,
         output: Optional[Union[str, Path]] = None,
-        pixel_size: int = DEFAULT_PIXEL_SIZE) -> PILImage:
+        algorithm: Optional[Algorithm] = None) -> PILImage:
     """
     Convert an image into pixel art.
 
     :param image: input image
     :param output: output file path
-    :param pixel_size: pixel size
+    :param algorithm: conversion algorithm
     """
-    converter = Converter(pixel_size=pixel_size)
+    converter = Converter(algorithm=algorithm)
     result = converter.convert(image)
     if output is not None:
         _save_image(result, output)
