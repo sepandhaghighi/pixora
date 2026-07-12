@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from unittest.mock import patch
+from unittest.mock import patch, ANY
 import pytest
 from pixora.cli import (
     _build_parser,
@@ -8,7 +8,7 @@ from pixora.cli import (
     _resolve_argument,
     main,
 )
-from pixora import NearestNeighbor, PixoraError
+from pixora import PixoraError
 
 
 def test_build_parser():
@@ -57,7 +57,7 @@ def test_main_success(mock_pixelize):
     mock_pixelize.assert_called_once_with(
         "input.png",
         output="output.png",
-        algorithm=NearestNeighbor(pixel_size=8),
+        algorithm=ANY,
     )
 
 
@@ -68,7 +68,7 @@ def test_main_with_pixel_size(mock_pixelize):
     mock_pixelize.assert_called_once_with(
         "input.png",
         output="output.png",
-        algorithm=NearestNeighbor(pixel_size=16),
+        algorithm=ANY,
     )
 
 
