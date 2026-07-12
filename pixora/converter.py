@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Union, Optional
 from PIL import Image
 from .algorithms import Algorithm
 from .algorithms import NearestNeighbor
+from .algorithms.base import _validate_algorithm
 from .functions import ImageInput, _load_image, _save_image
 from .functions import _validate_path, _validate_image_input
 if TYPE_CHECKING:
@@ -30,6 +31,7 @@ class Converter:
         """
         if algorithm is None:
             algorithm = NearestNeighbor()
+        _validate_algorithm(algorithm)
         self._algorithm = algorithm
 
     def convert(self, image: ImageInput) -> PILImage:
