@@ -3,7 +3,7 @@
 from unittest.mock import patch
 import pytest
 from PIL import Image
-from pixora import Converter
+from pixora import NearestNeighbor, Converter
 from pixora import PixoraError, PixoraImageError, PixoraValidationError
 
 

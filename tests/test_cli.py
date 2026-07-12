@@ -57,7 +57,7 @@ def test_main_success(mock_pixelize):
     mock_pixelize.assert_called_once_with(
         "input.png",
         output="output.png",
-        pixel_size=8,
+        algorithm=NearestNeighbor(pixel_size=8),
     )
 
 
@@ -68,7 +68,7 @@ def test_main_with_pixel_size(mock_pixelize):
     mock_pixelize.assert_called_once_with(
         "input.png",
         output="output.png",
-        pixel_size=16,
+        algorithm=NearestNeighbor(pixel_size=16),
     )
 
 
