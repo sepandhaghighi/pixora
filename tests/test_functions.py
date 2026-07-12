@@ -3,24 +3,24 @@
 from unittest.mock import patch
 import pytest
 from PIL import Image
-from pixora import Converter, pixelize
+from pixora import NearestNeighbor, Converter, pixelize
 
 
 def test_converter_default_pixel_size():
     converter = Converter()
-    assert converter._pixel_size == 8
+    assert converter._algorithm._pixel_size == 8
 
 
 @pytest.mark.parametrize("pixel_size", [1, 2, 4, 8, 16, 32])
 def test_converter_accepts_valid_pixel_sizes(pixel_size):
-    converter = Converter(pixel_size=pixel_size)
-    assert converter._pixel_size == pixel_size
+    converter = Converter(NearestNeighbor(pixel_size=pixel_size))
+    assert converter._algorithm._pixel_size == pixel_size
 
 
 def test_convert_pillow_image_returns_new_image():
     image = Image.new("RGB", (64, 64), "red")
 
-    result = Converter(pixel_size=8).convert(image)
+    result = Converter(NearestNeighbor(pixel_size=8)).convert(image)
 
     assert isinstance(result, Image.Image)
     assert result is not image
@@ -32,7 +32,7 @@ def test_convert_image_from_file(tmp_path):
     source = tmp_path / "source.png"
     Image.new("RGB", (50, 30), "blue").save(source)
 
-    result = Converter(pixel_size=5).convert(source)
+    result = Converter(NearestNeighbor(pixel_size=5)).convert(source)
 
     assert result.size == (50, 30)
     assert result.mode == "RGBA"

@@ -35,13 +35,13 @@ def test_validation_error_is_caught_as_value_error():
 @pytest.mark.parametrize("pixel_size", [0, -1, -5])
 def test_converter_rejects_invalid_pixel_size_values(pixel_size):
     with pytest.raises(PixoraValidationError):
-        Converter(pixel_size=pixel_size)
+        Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object()])
 def test_converter_rejects_invalid_pixel_size_types(pixel_size):
     with pytest.raises(PixoraValidationError):
-        Converter(pixel_size=pixel_size)
+        Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])
