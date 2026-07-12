@@ -82,3 +82,8 @@ def test_converter_save_propagates_save_error():
     with patch.object(Image.Image, "save", side_effect=OSError):
         with pytest.raises(PixoraImageError):
             Converter().save(image, "output.png")
+
+
+def test_converter_invalid_algorithm():
+    with pytest.raises(PixoraValidationError):
+        Converter(algorithm="nearest")
