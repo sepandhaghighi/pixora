@@ -3,7 +3,7 @@
 from unittest.mock import patch
 import pytest
 from PIL import Image
-from pixora import Converter
+from pixora import NearestNeighbor, Converter
 from pixora import PixoraError, PixoraImageError, PixoraValidationError
 
 
@@ -35,13 +35,13 @@ def test_validation_error_is_caught_as_value_error():
 @pytest.mark.parametrize("pixel_size", [0, -1, -5])
 def test_converter_rejects_invalid_pixel_size_values(pixel_size):
     with pytest.raises(PixoraValidationError):
-        Converter(pixel_size=pixel_size)
+        Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object()])
 def test_converter_rejects_invalid_pixel_size_types(pixel_size):
     with pytest.raises(PixoraValidationError):
-        Converter(pixel_size=pixel_size)
+        Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])
@@ -82,3 +82,8 @@ def test_converter_save_propagates_save_error():
     with patch.object(Image.Image, "save", side_effect=OSError):
         with pytest.raises(PixoraImageError):
             Converter().save(image, "output.png")
+
+
+def test_converter_invalid_algorithm():
+    with pytest.raises(PixoraValidationError):
+        Converter(algorithm="nearest")

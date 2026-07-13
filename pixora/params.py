@@ -13,6 +13,8 @@ IMAGE_SAVE_ERROR = "Failed to save image: {path}"
 IMAGE_TYPE_ERROR = "Expected a PIL.Image.Image instance."
 IMAGE_INPUT_TYPE_ERROR = "Image must be a str, pathlib.Path, or PIL.Image.Image."
 
+ALGORITHM_TYPE_ERROR = "Expected an instance of pixora.algorithms.Algorithm."
+
 PATH_TYPE_ERROR = "Expected a str or pathlib.Path."
 IMAGE_NOT_FOUND_ERROR = "Image not found: {path}"
 UNSUPPORTED_IMAGE_ERROR = "Unsupported image: {path}"

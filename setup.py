@@ -22,7 +22,7 @@ def read_description() -> str:
 
 setup(
     name='pixora',
-    packages=['pixora'],
+    packages=['pixora', 'pixora.algorithms'],
     version='0.1',
     description='Pixora: A Python Library for Pixel Art Conversion',
     long_description=read_description(),
