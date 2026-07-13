@@ -15,12 +15,11 @@ if TYPE_CHECKING:
 
 class Converter:
     """
-    Convert images into pixel art using nearest-neighbor scaling.
+    Convert images into pixel art using different algorithms.
 
     Parameters
     ----------
-    pixel_size : int, default=8
-    Size of the generated pixels.
+    algorithm : conversion algorithm
     """
 
     def __init__(self, algorithm: Optional[Algorithm] = None) -> None:
