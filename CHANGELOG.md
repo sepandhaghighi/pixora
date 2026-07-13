@@ -5,12 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [0.1] - 2026-xx-xx
+## [0.1] - 2026-07-14
 ### Added
-- Item1
-- Item2
-- Item3
-- Item4
+- `NearestNeighbor` algorithm
+- `pixelize` function
+- `Converter` class
+- `PixoraError` class
+- `PixoraImageError` class
+- `PixoraValidationError` class
 
 [Unreleased]: https://github.com/sepandhaghighi/pixora/compare/v0.1...dev
 [0.1]: https://github.com/sepandhaghighi/pixora/compare/0b7c06f...v0.1
