@@ -5,7 +5,7 @@ from typing import Optional
 import argparse
 import sys
 from art import tprint
-from .algorithms import NearestNeighbor
+from .algorithms import NearestNeighbor, Lanczos
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
@@ -33,6 +33,15 @@ def _build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_PIXEL_SIZE,
         help="Pixel size (default: {pixel_size}).".format(
             pixel_size=DEFAULT_PIXEL_SIZE))
+    parser.add_argument(
+        "-a",
+        "--algorithm",
+        choices=[
+            "nearest-neighbor",
+            "lanczos",
+        ],
+        default="nearest",
+        help="Pixelization algorithm (default: nearest-neighbor).")
     parser.add_argument("-v", "--version", action="version", version=PIXORA_VERSION)
     parser.add_argument("--info", help="Print info.", nargs="?", const=1)
     return parser
@@ -72,7 +81,10 @@ def main(argv: Optional[List[str]] = None) -> None:
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
-        algorithm = NearestNeighbor(pixel_size=args.pixel_size)
+        if args.algorithm == "nearest":
+            algorithm = NearestNeighbor(pixel_size=args.pixel_size)
+        else:
+            algorithm = Lanczos(pixel_size=args.pixel_size)
         pixelize(input_image, output=output_image, algorithm=algorithm)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
