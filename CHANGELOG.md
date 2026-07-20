@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `Lanczos` algorithm
+- `Bilinear` algorithm
+### Changed
+- Test system modified
 ## [0.1] - 2026-07-14
 ### Added
 - `NearestNeighbor` algorithm

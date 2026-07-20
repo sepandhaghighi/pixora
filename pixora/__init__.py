@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """pixora modules."""
 from .params import PIXORA_VERSION
-from .algorithms import NearestNeighbor, Lanczos
+from .algorithms import NearestNeighbor, Lanczos, Bilinear
 from .converter import Converter, pixelize
 from .errors import PixoraError, PixoraImageError, PixoraValidationError
 
@@ -14,5 +14,6 @@ __all__ = [
     "PixoraImageError",
     "PixoraValidationError",
     "NearestNeighbor",
-    "Lanczos"
+    "Lanczos",
+    "Bilinear"
 ]
