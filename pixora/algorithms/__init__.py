@@ -5,10 +5,12 @@ from .base import Algorithm
 from .nearest_neighbor import NearestNeighbor
 from .lanczos import Lanczos
 from .bilinear import Bilinear
+from .bicubic import Bicubic
 
 __all__ = [
     "Algorithm",
     "NearestNeighbor",
     "Lanczos",
-    "Bilinear"
+    "Bilinear",
+    "Bicubic"
 ]
