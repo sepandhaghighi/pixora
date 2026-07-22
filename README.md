@@ -76,6 +76,8 @@ image.show()
 pixora input.png output.png
 
 pixora input.png output.png --pixel-size=12
+
+pixora input.png output.png --algorithm="bilinear"
 ```
 
 ### Available Algorithms
