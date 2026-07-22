@@ -5,7 +5,7 @@ from typing import Optional
 import argparse
 import sys
 from art import tprint
-from .algorithms import NearestNeighbor, Lanczos, Bilinear
+from .algorithms import NearestNeighbor, Lanczos, Bilinear, Bicubic
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
@@ -86,8 +86,10 @@ def main(argv: Optional[List[str]] = None) -> None:
             algorithm = NearestNeighbor(pixel_size=args.pixel_size)
         elif args.algorithm == "lanczos":
             algorithm = Lanczos(pixel_size=args.pixel_size)
-        else:
+        elif args.algorithm == "bilinear":
             algorithm = Bilinear(pixel_size=args.pixel_size)
+        else:
+            algorithm = Bicubic(pixel_size=args.pixel_size)
         pixelize(input_image, output=output_image, algorithm=algorithm)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
