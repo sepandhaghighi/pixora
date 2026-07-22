@@ -78,6 +78,17 @@ pixora input.png output.png
 pixora input.png output.png --pixel-size=12
 ```
 
+### Available Algorithms
+
+
+| Algorithm         | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `NearestNeighbor` | Pixelate using nearest-neighbor resampling  |
+| `Bilinear`        | Pixelate using bilinear resampling          |
+| `Bicubic`         | Pixelate using bicubic resampling           |
+| `Lanczos`         | Pixelate using Lanczos resampling           |
+
+
 ## Issues & Bug Reports			
 
 Just fill an issue and describe it. We'll check it ASAP!
