@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class NearestNeighbor(Algorithm):
     """
-    Pixelate an image using nearest-neighbor scaling.
+    Pixelate an image using nearest-neighbor resampling.
 
     :param pixel_size: pixel size
     """

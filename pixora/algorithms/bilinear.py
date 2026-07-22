@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Bilinear(Algorithm):
     """
-    Pixelate an image using bilinear scaling.
+    Pixelate an image using bilinear resampling.
 
     :param pixel_size: pixel size
     """

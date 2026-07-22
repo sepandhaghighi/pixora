@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Bicubic(Algorithm):
     """
-    Pixelate an image using bicubic scaling.
+    Pixelate an image using bicubic resampling.
 
     :param pixel_size: pixel size
     """
