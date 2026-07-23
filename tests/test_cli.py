@@ -121,7 +121,6 @@ def test_main_algorithm(
 def test_main_handles_pixora_error(_):
     with pytest.raises(SystemExit) as exc:
         main(["input.png", "output.png"])
-
     assert exc.value.code == 1
 
 
@@ -129,7 +128,6 @@ def test_main_handles_pixora_error(_):
 def test_main_handles_keyboard_interrupt(_):
     with pytest.raises(SystemExit) as exc:
         main(["input.png", "output.png"])
-
     assert exc.value.code == 130
 
 
@@ -137,14 +135,12 @@ def test_main_handles_keyboard_interrupt(_):
 def test_main_handles_eof(_):
     with pytest.raises(SystemExit) as exc:
         main(["input.png", "output.png"])
-
     assert exc.value.code == 130
 
 
 @patch("pixora.cli._print_pixora_info")
 def test_main_info(mock_info):
     main(["--info"])
-
     mock_info.assert_called_once()
 
 
