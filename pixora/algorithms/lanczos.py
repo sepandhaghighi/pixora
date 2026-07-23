@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Lanczos(Algorithm):
     """
-    Pixelate an image using Lanczos scaling.
+    Pixelate an image using Lanczos resampling.
 
     :param pixel_size: pixel size
     """

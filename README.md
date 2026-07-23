@@ -63,10 +63,10 @@ Pixora is a lightweight Python library and command-line tool for converting ordi
 ### Library
 
 ```python
-from pixora import NearestNeighbor
+from pixora import NearestNeighbor, Lanczos
 from pixora import pixelize
 pixelize("input.png", output="output.png", algorithm=NearestNeighbor(pixel_size=12))
-image = pixelize("input.png", algorithm=NearestNeighbor(pixel_size=12))
+image = pixelize("input.png", algorithm=Lanczos(pixel_size=12))
 image.show()
 ```
 
@@ -76,7 +76,20 @@ image.show()
 pixora input.png output.png
 
 pixora input.png output.png --pixel-size=12
+
+pixora input.png output.png --algorithm="bilinear"
 ```
+
+### Available Algorithms
+
+
+| Algorithm         | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `NearestNeighbor` | Pixelate using nearest-neighbor resampling  |
+| `Bilinear`        | Pixelate using bilinear resampling          |
+| `Bicubic`         | Pixelate using bicubic resampling           |
+| `Lanczos`         | Pixelate using Lanczos resampling           |
+
 
 ## Issues & Bug Reports			
 
