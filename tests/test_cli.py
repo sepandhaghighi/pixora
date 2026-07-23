@@ -2,6 +2,7 @@
 
 from unittest.mock import patch, ANY
 import pytest
+from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic
 from pixora.cli import (
     _build_parser,
     _print_pixora_info,
@@ -51,25 +52,69 @@ def test_print_pixora_info(mock_print, mock_tprint):
 
 
 @patch("pixora.cli.pixelize")
-def test_main_success(mock_pixelize):
-    main(["input.png", "output.png"])
+@pytest.mark.parametrize(
+    "arguments,algorithm,pixel_size",
+    [
+        (
+            ["input.png", "output.png"],
+            NearestNeighbor,
+            8,
+        ),
+        (
+            ["input.png", "output.png", "--pixel-size", "16"],
+            NearestNeighbor,
+            16,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "lanczos"],
+            Lanczos,
+            8,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "lanczos", "--pixel-size", "16"],
+            Lanczos,
+            16,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "bilinear"],
+            Bilinear,
+            8,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "bilinear", "--pixel-size", "16"],
+            Bilinear,
+            16,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "bicubic"],
+            Bicubic,
+            8,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "bicubic", "--pixel-size", "16"],
+            Bicubic,
+            16,
+        ),
+    ],
+)
+def test_main_algorithm(
+        mock_pixelize,
+        arguments,
+        algorithm,
+        pixel_size):
+    main(arguments)
 
-    mock_pixelize.assert_called_once_with(
-        "input.png",
-        output="output.png",
-        algorithm=ANY,
-    )
+    mock_pixelize.assert_called_once()
 
+    args, kwargs = mock_pixelize.call_args
 
-@patch("pixora.cli.pixelize")
-def test_main_with_pixel_size(mock_pixelize):
-    main(["input.png", "output.png", "--pixel-size", "16"])
+    assert args == ("input.png",)
+    assert kwargs["output"] == "output.png"
 
-    mock_pixelize.assert_called_once_with(
-        "input.png",
-        output="output.png",
-        algorithm=ANY,
-    )
+    result_algorithm = kwargs["algorithm"]
+
+    assert isinstance(result_algorithm, algorithm)
+    assert result_algorithm._pixel_size == pixel_size
 
 
 @patch("pixora.cli.pixelize", side_effect=PixoraError("failure"))
