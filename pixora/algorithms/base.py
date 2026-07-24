@@ -3,18 +3,17 @@
 
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any
+from PIL.Image import Image
+from typing import Any
 from ..errors import PixoraValidationError
 from ..params import ALGORITHM_TYPE_ERROR
-if TYPE_CHECKING:
-    from PIL.Image import Image as PILImage
 
 
 class Algorithm(ABC):
     """Base class for all Pixora algorithms."""
 
     @abstractmethod
-    def apply(self, image: PILImage) -> PILImage:
+    def apply(self, image: Image) -> Image:
         """
         Apply the algorithm.
 
