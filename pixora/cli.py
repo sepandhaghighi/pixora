@@ -39,7 +39,8 @@ def _build_parser() -> argparse.ArgumentParser:
         choices=[
             "nearest-neighbor",
             "lanczos",
-            "bilinear"
+            "bilinear",
+            "bicubic"
         ],
         default="nearest-neighbor",
         help="Pixelization algorithm (default: nearest-neighbor).")
