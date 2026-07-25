@@ -2,14 +2,10 @@
 """pixora lanczos algorithm."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
 from PIL import Image
 from ..params import DEFAULT_PIXEL_SIZE
 from ..functions import _calculate_pixel_dimensions, _validate_pixel_size
 from .base import Algorithm
-
-if TYPE_CHECKING:
-    from PIL.Image import Image as PILImage
 
 
 class Lanczos(Algorithm):
@@ -30,7 +26,7 @@ class Lanczos(Algorithm):
         _validate_pixel_size(pixel_size)
         self._pixel_size = pixel_size
 
-    def apply(self, image: PILImage) -> PILImage:
+    def apply(self, image: Image.Image) -> Image.Image:
         """
         Apply the algorithm.
 

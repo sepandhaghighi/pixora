@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 from pathlib import Path
-from typing import TYPE_CHECKING, Union, Optional
+from typing import Union, Optional
 from PIL import Image
 from .algorithms import Algorithm
 from .algorithms import NearestNeighbor
 from .algorithms.base import _validate_algorithm
 from .functions import ImageInput, _load_image, _save_image
 from .functions import _validate_path, _validate_image_input
-if TYPE_CHECKING:
-    from PIL.Image import Image as PILImage
 
 
 class Converter:
@@ -33,7 +31,7 @@ class Converter:
         _validate_algorithm(algorithm)
         self._algorithm = algorithm
 
-    def convert(self, image: ImageInput) -> PILImage:
+    def convert(self, image: ImageInput) -> Image.Image:
         """
         Convert an image.
 
@@ -60,7 +58,7 @@ def pixelize(
         image: ImageInput,
         *,
         output: Optional[Union[str, Path]] = None,
-        algorithm: Optional[Algorithm] = None) -> PILImage:
+        algorithm: Optional[Algorithm] = None) -> Image.Image:
     """
     Convert an image into pixel art.
 
