@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/sepandhaghighi/pixora/raw/logo/otherfiles/logo.png" width="350">
+<img src="https://github.com/sepandhaghighi/pixora/raw/logo/otherfiles/logo.png" width="300">
 <h1>Pixora: A Python Library for Pixel Art Conversion</h1>
 <br/>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
