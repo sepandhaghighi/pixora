@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Lanczos` algorithm
 - `Bilinear` algorithm
 - `Bicubic` algorithm
+- Logo
 ### Changed
 - Test system modified
 - `README.md` updated
