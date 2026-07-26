@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """pixora params."""
-PIXORA_VERSION = "0.1"
+PIXORA_VERSION = "0.2"
 
 PIXORA_OVERVIEW = '''Pixora is a lightweight Python library and command-line tool for converting ordinary images into retro-style pixel art.
 Built on top of Pillow, it provides a simple API for pixelizing images with customizable pixel sizes while supporting both file paths
