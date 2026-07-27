@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.2] - 2026-07-27
 ### Added
 - `Lanczos` algorithm
 - `Bilinear` algorithm
@@ -22,7 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `PixoraImageError` class
 - `PixoraValidationError` class
 
-[Unreleased]: https://github.com/sepandhaghighi/pixora/compare/v0.1...dev
+[Unreleased]: https://github.com/sepandhaghighi/pixora/compare/v0.2...dev
+[0.2]: https://github.com/sepandhaghighi/pixora/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/pixora/compare/0b7c06f...v0.1
 
 
