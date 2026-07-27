@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from unittest.mock import patch
 import pytest
 from PIL import Image
 from pixora import NearestNeighbor, Converter, pixelize
