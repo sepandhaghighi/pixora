@@ -2,7 +2,7 @@
 """pixora functions."""
 
 from __future__ import annotations
-from typing import Tuple, Union, Optional
+from typing import Tuple, Union, Optional, Any
 from pathlib import Path
 from PIL import Image
 from .params import PIXEL_SIZE_TYPE_ERROR, PIXEL_SIZE_VALUE_ERROR
