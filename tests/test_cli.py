@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from unittest.mock import patch, ANY
+from unittest.mock import patch
 import pytest
 from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic
 from pixora.cli import (

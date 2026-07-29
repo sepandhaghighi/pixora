@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """pixora cli."""
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, List
 import argparse
-import sys
 from art import tprint
 from .algorithms import NearestNeighbor, Lanczos, Bilinear, Bicubic
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
