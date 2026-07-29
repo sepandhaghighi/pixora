@@ -99,14 +99,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
-        if args.algorithm == "nearest-neighbor":
-            algorithm = NearestNeighbor(pixel_size=args.pixel_size)
-        elif args.algorithm == "lanczos":
-            algorithm = Lanczos(pixel_size=args.pixel_size)
-        elif args.algorithm == "bilinear":
-            algorithm = Bilinear(pixel_size=args.pixel_size)
-        else:
-            algorithm = Bicubic(pixel_size=args.pixel_size)
+        algorithm = _create_algorithm(name=args.algorithm, pixel_size=args.pixel_size)
         pixelize(input_image, output=output_image, algorithm=algorithm)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
