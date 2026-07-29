@@ -26,11 +26,10 @@ def _load_image(image: ImageInput) -> Image.Image:
     if not path.exists():
         raise PixoraImageError(IMAGE_NOT_FOUND_ERROR.format(path=path))
     try:
-        img = Image.open(path)
-        img.load()
+        with Image.open(path) as img:
+            return img.convert("RGBA")
     except OSError as exc:
         raise PixoraImageError(UNSUPPORTED_IMAGE_ERROR.format(path=path)) from exc
-    return img.convert("RGBA")
 
 
 def _save_image(image: Image.Image, output: Union[str, Path]) -> None:
