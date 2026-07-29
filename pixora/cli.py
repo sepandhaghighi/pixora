@@ -10,6 +10,12 @@ from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
 from .errors import PixoraError
 
+ALGORITHMS = {
+    "nearest-neighbor": NearestNeighbor,
+    "lanczos": Lanczos,
+    "bilinear": Bilinear,
+    "bicubic": Bicubic,
+}
 
 def _print_pixora_info() -> None:
     """Print Pixora info."""
@@ -66,6 +72,17 @@ def _resolve_argument(
     if value is None:
         parser.error(f"{name} is required.")
     return value
+
+
+def _create_algorithm(name: str, pixel_size: int) -> Algorithm:
+    """
+    Create a pixelization algorithm.
+
+    :param name: algorithm name
+    :param pixel_size: pixel size
+    """
+    algorithm_class = ALGORITHMS[name]
+    return algorithm_class(pixel_size=pixel_size)
 
 
 def main(argv: Optional[List[str]] = None) -> None:
