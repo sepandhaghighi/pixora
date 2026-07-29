@@ -17,6 +17,7 @@ ALGORITHMS = {
     "bicubic": Bicubic,
 }
 
+
 def _print_pixora_info() -> None:
     """Print Pixora info."""
     tprint("Pixora")
