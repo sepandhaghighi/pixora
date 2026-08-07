@@ -53,47 +53,61 @@ def test_print_pixora_info(mock_print, mock_tprint):
 
 @patch("pixora.cli.pixelize")
 @pytest.mark.parametrize(
-    "arguments,algorithm,pixel_size",
+    "arguments,algorithm,pixel_size",grayscale
     [
         (
             ["input.png", "output.png"],
             NearestNeighbor,
             8,
+            False,
         ),
         (
             ["input.png", "output.png", "--pixel-size", "16"],
             NearestNeighbor,
             16,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "lanczos"],
             Lanczos,
             8,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "lanczos", "--pixel-size", "16"],
             Lanczos,
             16,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "bilinear"],
             Bilinear,
             8,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "bilinear", "--pixel-size", "16"],
             Bilinear,
             16,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "bicubic"],
             Bicubic,
             8,
+            False,
         ),
         (
             ["input.png", "output.png", "--algorithm", "bicubic", "--pixel-size", "16"],
             Bicubic,
             16,
+            False,
+        ),
+        (
+            ["input.png", "output.png", "--grayscale"],
+            NearestNeighbor,
+            8,
+            True,
         ),
     ],
 )
@@ -110,6 +124,7 @@ def test_main_algorithm(
 
     assert args == ("input.png",)
     assert kwargs["output"] == "output.png"
+    assert kwargs["grayscale"] is grayscale
 
     result_algorithm = kwargs["algorithm"]
 
