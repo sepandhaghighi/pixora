@@ -53,7 +53,7 @@ def test_print_pixora_info(mock_print, mock_tprint):
 
 @patch("pixora.cli.pixelize")
 @pytest.mark.parametrize(
-    "arguments,algorithm,pixel_size,grayscale"
+    "arguments,algorithm,pixel_size,grayscale",
     [
         (
             ["input.png", "output.png"],
