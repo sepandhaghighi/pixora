@@ -37,6 +37,18 @@ def test_convert_image_from_file(tmp_path):
     assert result.mode == "RGBA"
 
 
+def test_convert_grayscale():
+    image = Image.new("RGB", (64, 64), "red")
+
+    result = Converter(
+        NearestNeighbor(pixel_size=8)
+    ).convert(image, grayscale=True)
+
+    assert isinstance(result, Image.Image)
+    assert result.size == image.size
+    assert result.mode == "RGBA"
+
+
 def test_converter_save_creates_output_file(tmp_path):
     image = Image.new("RGB", (40, 40))
     output = tmp_path / "output.png"
@@ -44,6 +56,23 @@ def test_converter_save_creates_output_file(tmp_path):
     Converter().save(image, output)
 
     assert output.exists()
+
+
+def test_converter_save_grayscale(tmp_path):
+    image = Image.new("RGB", (40, 40), "red")
+    output = tmp_path / "output.png"
+
+    Converter().save(
+        image,
+        output,
+        grayscale=True,
+    )
+
+    assert output.exists()
+
+    result = Image.open(output)
+
+    assert result.mode == "RGBA"
 
 
 def test_pixelize_returns_image():
@@ -73,3 +102,13 @@ def test_pixelize_with_file_input(tmp_path):
 
     assert isinstance(result, Image.Image)
     assert result.size == (25, 25)
+
+
+def test_pixelize_grayscale():
+    image = Image.new("RGB", (60, 60), "red")
+
+    result = pixelize(image, grayscale=True)
+
+    assert isinstance(result, Image.Image)
+    assert result.size == image.size
+    assert result.mode == "RGBA"

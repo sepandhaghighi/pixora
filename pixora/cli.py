@@ -50,6 +50,7 @@ def _build_parser() -> argparse.ArgumentParser:
         ],
         default="nearest-neighbor",
         help="Pixelization algorithm (default: nearest-neighbor).")
+    parser.add_argument("--grayscale", action="store_true", help="Convert the result to grayscale.")
     parser.add_argument("-v", "--version", action="version", version=PIXORA_VERSION)
     parser.add_argument("--info", help="Print info.", nargs="?", const=1)
     return parser
@@ -101,7 +102,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
         algorithm = _create_algorithm(name=args.algorithm, pixel_size=args.pixel_size)
-        pixelize(input_image, output=output_image, algorithm=algorithm)
+        pixelize(input_image, output=output_image, algorithm=algorithm, grayscale=args.grayscale)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
     except (KeyboardInterrupt, EOFError):

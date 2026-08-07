@@ -31,26 +31,31 @@ class Converter:
         _validate_algorithm(algorithm)
         self._algorithm = algorithm
 
-    def convert(self, image: ImageInput) -> Image.Image:
+    def convert(self, image: ImageInput, grayscale: bool = False) -> Image.Image:
         """
         Convert an image.
 
         :param image: input image
+        :param grayscale: convert output to grayscale
         """
         _validate_image_input(image)
         img = _load_image(image)
-        return self._algorithm.apply(img)
+        result = self._algorithm.apply(img)
+        if grayscale:
+            result = result.convert("L").convert("RGBA")
+        return result
 
-    def save(self, image: ImageInput, output: Union[str, Path]) -> None:
+    def save(self, image: ImageInput, output: Union[str, Path], grayscale: bool = False) -> None:
         """
         Convert an image and save the result.
 
         :param image: input image
         :param output: file path
+        :param grayscale: convert output to grayscale
         """
         _validate_image_input(image)
         _validate_path(output)
-        result = self.convert(image)
+        result = self.convert(image, grayscale=grayscale)
         _save_image(result, output)
 
 
@@ -58,16 +63,18 @@ def pixelize(
         image: ImageInput,
         *,
         output: Optional[Union[str, Path]] = None,
-        algorithm: Optional[Algorithm] = None) -> Image.Image:
+        algorithm: Optional[Algorithm] = None,
+        grayscale: bool = False) -> Image.Image:
     """
     Convert an image into pixel art.
 
     :param image: input image
     :param output: output file path
     :param algorithm: conversion algorithm
+    :param grayscale: convert output to grayscale
     """
     converter = Converter(algorithm=algorithm)
-    result = converter.convert(image)
+    result = converter.convert(image, grayscale=grayscale)
     if output is not None:
         _save_image(result, output)
     return result
