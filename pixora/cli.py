@@ -4,11 +4,18 @@ from __future__ import annotations
 from typing import Optional, List
 import argparse
 from art import tprint
-from .algorithms import NearestNeighbor, Lanczos, Bilinear, Bicubic
+from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
 from .errors import PixoraError
+
+ALGORITHMS = {
+    "nearest-neighbor": NearestNeighbor,
+    "lanczos": Lanczos,
+    "bilinear": Bilinear,
+    "bicubic": Bicubic,
+}
 
 
 def _print_pixora_info() -> None:
@@ -68,6 +75,17 @@ def _resolve_argument(
     return value
 
 
+def _create_algorithm(name: str, pixel_size: int) -> Algorithm:
+    """
+    Create a pixelization algorithm.
+
+    :param name: algorithm name
+    :param pixel_size: pixel size
+    """
+    algorithm_class = ALGORITHMS[name]
+    return algorithm_class(pixel_size=pixel_size)
+
+
 def main(argv: Optional[List[str]] = None) -> None:
     """
     CLI entry point.
@@ -82,14 +100,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
-        if args.algorithm == "nearest-neighbor":
-            algorithm = NearestNeighbor(pixel_size=args.pixel_size)
-        elif args.algorithm == "lanczos":
-            algorithm = Lanczos(pixel_size=args.pixel_size)
-        elif args.algorithm == "bilinear":
-            algorithm = Bilinear(pixel_size=args.pixel_size)
-        else:
-            algorithm = Bicubic(pixel_size=args.pixel_size)
+        algorithm = _create_algorithm(name=args.algorithm, pixel_size=args.pixel_size)
         pixelize(input_image, output=output_image, algorithm=algorithm)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")
