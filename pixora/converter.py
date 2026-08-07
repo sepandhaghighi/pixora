@@ -31,15 +31,19 @@ class Converter:
         _validate_algorithm(algorithm)
         self._algorithm = algorithm
 
-    def convert(self, image: ImageInput) -> Image.Image:
+    def convert(self, image: ImageInput, grayscale: bool = False) -> Image.Image:
         """
         Convert an image.
 
         :param image: input image
+        :param grayscale: convert output to grayscale
         """
         _validate_image_input(image)
         img = _load_image(image)
-        return self._algorithm.apply(img)
+        result = self._algorithm.apply(img)
+        if grayscale:
+            result = result.convert("L").convert("RGBA")
+        return result
 
     def save(self, image: ImageInput, output: Union[str, Path]) -> None:
         """
