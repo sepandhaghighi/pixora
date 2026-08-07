@@ -115,7 +115,8 @@ def test_main_algorithm(
         mock_pixelize,
         arguments,
         algorithm,
-        pixel_size):
+        pixel_size,
+        grayscale):
     main(arguments)
 
     mock_pixelize.assert_called_once()
