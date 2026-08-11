@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `--grayscale` CLI argument
 ### Changed
 - Opened image bug fixed
+- `--info` CLI argument bug fixed
 - CLI structure modified
 - Test system modified
 - `README.md` updated
