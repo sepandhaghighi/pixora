@@ -55,7 +55,7 @@ def _validate_pixel_size(pixel_size: Any) -> None:
 
     :param pixel_size: pixel size
     """
-    if not isinstance(pixel_size, int):
+    if not isinstance(pixel_size, int) or isinstance(pixel_size, bool):
         raise PixoraValidationError(PIXEL_SIZE_TYPE_ERROR)
     if pixel_size <= 0:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
