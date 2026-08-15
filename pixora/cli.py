@@ -42,12 +42,8 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-a",
         "--algorithm",
-        choices=[
-            "nearest-neighbor",
-            "lanczos",
-            "bilinear",
-            "bicubic"
-        ],
+        type=str.lower,
+        choices=sorted(ALGORITHMS),
         default="nearest-neighbor",
         help="Pixelization algorithm (default: nearest-neighbor).")
     parser.add_argument("--grayscale", action="store_true", help="Convert the result to grayscale.")
