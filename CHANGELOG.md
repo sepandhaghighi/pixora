@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Opened image bug fixed
 - `--info` CLI argument bug fixed
+- `--algorithm` CLI argument bug fixed
 - Pixel size validation bug fixed
 - CLI structure modified
 - Test system modified
