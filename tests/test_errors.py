@@ -38,7 +38,7 @@ def test_converter_rejects_invalid_pixel_size_values(pixel_size):
         Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
-@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object()])
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types(pixel_size):
     with pytest.raises(PixoraValidationError):
         Converter(NearestNeighbor(pixel_size=pixel_size))
