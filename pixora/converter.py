@@ -53,7 +53,6 @@ class Converter:
         :param output: file path
         :param grayscale: convert output to grayscale
         """
-        _validate_image_input(image)
         _validate_path(output)
         result = self.convert(image, grayscale=grayscale)
         _save_image(result, output)
