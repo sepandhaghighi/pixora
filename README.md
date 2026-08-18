@@ -85,9 +85,7 @@ pixora input.png output.png --grayscale
 
 ### Available Algorithms
 
-The following examples use the same input image with `pixel_size=8`.
-
-<img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/original.png" width="300">
+The following examples use the same [input image](https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/original.png) with `pixel_size=8`.
 
 | Algorithm | Description | Example |
 | --------- | ----------- | ------- |
