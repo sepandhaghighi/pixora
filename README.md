@@ -85,28 +85,16 @@ pixora input.png output.png --grayscale
 
 ### Available Algorithms
 
-
-| Algorithm         | Description                                 |
-| ----------------- | ------------------------------------------- |
-| `NearestNeighbor` | Pixelate using nearest-neighbor resampling  |
-| `Bilinear`        | Pixelate using bilinear resampling          |
-| `Bicubic`         | Pixelate using bicubic resampling           |
-| `Lanczos`         | Pixelate using Lanczos resampling           |
-
-
-### Algorithm Examples
-
 The following examples use the same input image with `pixel_size=8`.
 
-| Algorithm       | Example                                                          |
-| --------------- | ---------------------------------------------------------------- |
-| Original        | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/original.png" width="250">         |
-| NearestNeighbor | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/nearest-neighbor.png" width="250"> |
-| Bilinear        | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/bilinear.png" width="250">         |
-| Bicubic         | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/bicubic.png" width="250">          |
-| Lanczos         | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/lanczos.png" width="250">          |
+<img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/original.png" width="300">
 
-
+| Algorithm | Description | Example |
+| --------- | ----------- | ------- |
+| `NearestNeighbor` | Pixelate using nearest-neighbor resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/nearest-neighbor.png" width="300"> |
+| `Bilinear` | Pixelate using bilinear resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/bilinear.png" width="300"> |
+| `Bicubic` | Pixelate using bicubic resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/bicubic.png" width="300"> |
+| `Lanczos` | Pixelate using Lanczos resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/examples/otherfiles/examples/lanczos.png" width="300"> |
 
 ## Issues & Bug Reports			
 
