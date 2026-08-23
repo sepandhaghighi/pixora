@@ -23,7 +23,7 @@ def read_description() -> str:
 setup(
     name='pixora',
     packages=['pixora', 'pixora.algorithms'],
-    version='0.2',
+    version='0.3',
     description='Pixora: A Python Library for Pixel Art Conversion',
     long_description=read_description(),
     long_description_content_type='text/markdown',
@@ -31,7 +31,7 @@ setup(
     author='Sepand Haghighi',
     author_email='me@sepand.tech',
     url='https://github.com/sepandhaghighi/pixora',
-    download_url='https://github.com/sepandhaghighi/pixora/tarball/v0.2',
+    download_url='https://github.com/sepandhaghighi/pixora/tarball/v0.3',
     keywords='pixel art pixel-art pixelate image-processing pillow PIL graphics',
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/pixora'

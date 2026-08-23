@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.3] - 2026-08-23
 ### Added
 - `grayscale` parameter
 - `--grayscale` CLI argument
@@ -35,7 +36,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `PixoraImageError` class
 - `PixoraValidationError` class
 
-[Unreleased]: https://github.com/sepandhaghighi/pixora/compare/v0.2...dev
+[Unreleased]: https://github.com/sepandhaghighi/pixora/compare/v0.3...dev
+[0.3]: https://github.com/sepandhaghighi/pixora/compare/v0.2...v0.3
 [0.2]: https://github.com/sepandhaghighi/pixora/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/pixora/compare/0b7c06f...v0.1
 

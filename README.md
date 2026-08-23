@@ -50,13 +50,13 @@ Pixora is a lightweight Python library and command-line tool for converting ordi
 ## Installation		
 
 ### Source Code
-- Download [Version 0.2](https://github.com/sepandhaghighi/pixora/archive/v0.2.zip) or [Latest Source](https://github.com/sepandhaghighi/pixora/archive/dev.zip)
+- Download [Version 0.3](https://github.com/sepandhaghighi/pixora/archive/v0.3.zip) or [Latest Source](https://github.com/sepandhaghighi/pixora/archive/dev.zip)
 - `pip install .`				
 
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- `pip install pixora==0.2`						
+- `pip install pixora==0.3`						
 
 
 ## Usage

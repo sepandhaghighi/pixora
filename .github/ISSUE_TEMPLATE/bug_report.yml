@@ -84,6 +84,7 @@ body:
       label: Pixora version
       description: Which version of Pixora are you using?
       options:
+        - Pixora 0.3
         - Pixora 0.2
         - Pixora 0.1
       default: 0
