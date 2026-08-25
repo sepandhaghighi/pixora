@@ -93,6 +93,7 @@ The following examples use the same [input image](https://github.com/sepandhaghi
 | `Bilinear` | Pixelate using bilinear resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/bilinear.png" width="300"> |
 | `Bicubic` | Pixelate using bicubic resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/bicubic.png" width="300"> |
 | `Lanczos` | Pixelate using Lanczos resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/lanczos.png" width="300"> |
+| `MeanBlock` | Pixelate by calculating the mean RGB color of each block | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/mean-block.png" width="300"> |
 
 ## Issues & Bug Reports			
 
