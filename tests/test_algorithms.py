@@ -3,7 +3,7 @@
 from PIL import Image
 import pytest
 
-from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic
+from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock
 
 
 @pytest.mark.parametrize(
@@ -12,7 +12,8 @@ from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic
         NearestNeighbor(pixel_size=8),
         Lanczos(pixel_size=8),
         Bilinear(pixel_size=8),
-        Bicubic(pixel_size=8)
+        Bicubic(pixel_size=8),
+        MeanBlock(pixel_size=8),
     ],
 )
 def test_algorithms_apply_returns_new_image(algorithm):
@@ -41,6 +42,9 @@ def test_algorithms_apply_returns_new_image(algorithm):
         Bicubic(pixel_size=1),
         Bicubic(pixel_size=8),
         Bicubic(pixel_size=32),
+        MeanBlock(pixel_size=1),
+        MeanBlock(pixel_size=8),
+        MeanBlock(pixel_size=32),
     ],
 )
 def test_algorithms_preserve_image_size(algorithm):
@@ -62,6 +66,8 @@ def test_algorithms_preserve_image_size(algorithm):
         (Bilinear(pixel_size=16), 16),
         (Bicubic(pixel_size=4), 4),
         (Bicubic(pixel_size=16), 16),
+        (MeanBlock(pixel_size=4), 4),
+        (MeanBlock(pixel_size=16), 16),
     ],
 )
 def test_algorithms_store_pixel_size(algorithm, pixel_size):
