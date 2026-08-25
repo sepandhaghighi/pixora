@@ -34,9 +34,14 @@ class MeanBlock(Algorithm):
 
         :param image: input image
         """
-        image = image.convert("RGBA")
         width, height = image.size
-        result = Image.new("RGBA", (width, height))
+        mode = image.mode
+
+        if mode not in ("RGB", "RGBA"):
+            image = image.convert("RGBA")
+            mode = "RGBA"
+
+        result = Image.new(mode, (width, height))
 
         source = image.load()
         target = result.load()
