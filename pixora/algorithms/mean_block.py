@@ -27,6 +27,46 @@ class MeanBlock(Algorithm):
         """
         _validate_pixel_size(pixel_size)
         self._pixel_size = pixel_size
+    
+    def _mean_block(
+            self,
+            source,
+            left: int,
+            top: int,
+            right: int,
+            bottom: int,
+            mode: str):
+        """
+        Calculate the mean color of a pixel block.
+
+        :param source: source image pixel access
+        :param left: left block coordinate
+        :param top: top block coordinate
+        :param right: right block coordinate
+        :param bottom: bottom block coordinate
+        :param mode: image mode
+        """
+        red = green = blue = alpha = 0
+        count = (right - left) * (bottom - top)
+
+        for y in range(top, bottom):
+            for x in range(left, right):
+                pixel = source[x, y]
+
+                if mode == "RGBA":
+                    r, g, b, a = pixel
+                    alpha += a
+                else:
+                    r, g, b = pixel
+
+                red += r
+                green += g
+                blue += b
+
+        if mode == "RGBA":
+            return (red // count, green // count, blue // count, alpha // count)
+
+        return (red // count, green // count, blue // count)
 
     def apply(self, image: Image.Image) -> Image.Image:
         """
