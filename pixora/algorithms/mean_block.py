@@ -91,37 +91,14 @@ class MeanBlock(Algorithm):
                 right = min(left + self._pixel_size, width)
                 bottom = min(top + self._pixel_size, height)
 
-                red = green = blue = alpha = 0
-                count = 0
-
-                for y in range(top, bottom):
-                    for x in range(left, right):
-                        pixel = source[x, y]
-
-                        if mode == "RGBA":
-                            r, g, b, a = pixel
-                            alpha += a
-                        else:
-                            r, g, b = pixel
-
-                        red += r
-                        green += g
-                        blue += b
-                        count += 1
-
-                if mode == "RGBA":
-                    color = (
-                        red // count,
-                        green // count,
-                        blue // count,
-                        alpha // count,
-                    )
-                else:
-                    color = (
-                        red // count,
-                        green // count,
-                        blue // count,
-                    )
+                color = self._mean_block(
+                    source,
+                    left,
+                    top,
+                    right,
+                    bottom,
+                    mode,
+                )
 
                 for y in range(top, bottom):
                     for x in range(left, right):
