@@ -28,8 +28,8 @@ class MeanBlock(Algorithm):
         _validate_pixel_size(pixel_size)
         self._pixel_size = pixel_size
     
+    @staticmethod
     def _mean_block(
-            self,
             source,
             left: int,
             top: int,
