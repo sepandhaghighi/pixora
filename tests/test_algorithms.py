@@ -49,7 +49,7 @@ def test_algorithms_apply_returns_new_image(algorithm):
 )
 def test_algorithms_image_mode(algorithm, input_mode, output_mode):
     image = Image.new("RGB", (64, 64), "red")
-    image.convert(input_mode)
+    image = image.convert(input_mode)
     result = algorithm.apply(image)
 
     assert isinstance(result, Image.Image)
