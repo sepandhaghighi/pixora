@@ -3,7 +3,7 @@
 from unittest.mock import patch
 import pytest
 from PIL import Image
-from pixora import NearestNeighbor, Converter
+from pixora import NearestNeighbor, Bilinear, Bicubic, Lanczos, MeanBlock, Converter
 from pixora import PixoraError, PixoraImageError, PixoraValidationError
 
 
@@ -39,9 +39,33 @@ def test_converter_rejects_invalid_pixel_size_values(pixel_size):
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
-def test_converter_rejects_invalid_pixel_size_types(pixel_size):
+def test_converter_rejects_invalid_pixel_size_types1(pixel_size):
     with pytest.raises(PixoraValidationError):
         Converter(NearestNeighbor(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types2(pixel_size):
+    with pytest.raises(PixoraValidationError):
+        Converter(Bilinear(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types3(pixel_size):
+    with pytest.raises(PixoraValidationError):
+        Converter(Bicubic(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types4(pixel_size):
+    with pytest.raises(PixoraValidationError):
+        Converter(Lanczos(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types5(pixel_size):
+    with pytest.raises(PixoraValidationError):
+        Converter(MeanBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])

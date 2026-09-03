@@ -2,9 +2,8 @@
 """pixora mean-block algorithm."""
 
 from __future__ import annotations
-
+from typing import Any
 from PIL import Image
-
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
 from .base import Algorithm
@@ -27,6 +26,46 @@ class MeanBlock(Algorithm):
         """
         _validate_pixel_size(pixel_size)
         self._pixel_size = pixel_size
+
+    @staticmethod
+    def _mean_block(
+            source: Any,
+            left: int,
+            top: int,
+            right: int,
+            bottom: int,
+            mode: str):
+        """
+        Calculate the mean color of a pixel block.
+
+        :param source: source image pixel access
+        :param left: left block coordinate
+        :param top: top block coordinate
+        :param right: right block coordinate
+        :param bottom: bottom block coordinate
+        :param mode: image mode
+        """
+        red = green = blue = alpha = 0
+        count = (right - left) * (bottom - top)
+
+        for y in range(top, bottom):
+            for x in range(left, right):
+                pixel = source[x, y]
+
+                if mode == "RGBA":
+                    r, g, b, a = pixel
+                    alpha += a
+                else:
+                    r, g, b = pixel
+
+                red += r
+                green += g
+                blue += b
+
+        if mode == "RGBA":
+            return (red // count, green // count, blue // count, alpha // count)
+
+        return (red // count, green // count, blue // count)
 
     def apply(self, image: Image.Image) -> Image.Image:
         """
@@ -51,37 +90,14 @@ class MeanBlock(Algorithm):
                 right = min(left + self._pixel_size, width)
                 bottom = min(top + self._pixel_size, height)
 
-                red = green = blue = alpha = 0
-                count = 0
-
-                for y in range(top, bottom):
-                    for x in range(left, right):
-                        pixel = source[x, y]
-
-                        if mode == "RGBA":
-                            r, g, b, a = pixel
-                            alpha += a
-                        else:
-                            r, g, b = pixel
-
-                        red += r
-                        green += g
-                        blue += b
-                        count += 1
-
-                if mode == "RGBA":
-                    color = (
-                        red // count,
-                        green // count,
-                        blue // count,
-                        alpha // count,
-                    )
-                else:
-                    color = (
-                        red // count,
-                        green // count,
-                        blue // count,
-                    )
+                color = self._mean_block(
+                    source=source,
+                    left=left,
+                    top=top,
+                    right=right,
+                    bottom=bottom,
+                    mode=mode,
+                )
 
                 for y in range(top, bottom):
                     for x in range(left, right):
