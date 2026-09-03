@@ -2,9 +2,8 @@
 """pixora mean-block algorithm."""
 
 from __future__ import annotations
-
+from typing import Any
 from PIL import Image
-
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
 from .base import Algorithm
@@ -30,7 +29,7 @@ class MeanBlock(Algorithm):
 
     @staticmethod
     def _mean_block(
-            source,
+            source: Any,
             left: int,
             top: int,
             right: int,
