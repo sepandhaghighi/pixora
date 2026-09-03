@@ -91,12 +91,12 @@ class MeanBlock(Algorithm):
                 bottom = min(top + self._pixel_size, height)
 
                 color = self._mean_block(
-                    source,
-                    left,
-                    top,
-                    right,
-                    bottom,
-                    mode,
+                    source=source,
+                    left=left,
+                    top=top,
+                    right=right,
+                    bottom=bottom,
+                    mode=mode,
                 )
 
                 for y in range(top, bottom):
