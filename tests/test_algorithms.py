@@ -28,6 +28,37 @@ def test_algorithms_apply_returns_new_image(algorithm):
 
 
 @pytest.mark.parametrize(
+    "algorithm, input_mode, output_mode",
+    [
+        (NearestNeighbor(pixel_size=8), "RGB", "RGB"),
+        (NearestNeighbor(pixel_size=8), "RGBA", "RGBA"),
+        (NearestNeighbor(pixel_size=8), "LA", "LA"),
+        (Lanczos(pixel_size=8), "RGB", "RGB"),
+        (Lanczos(pixel_size=8), "RGBA", "RGBA"),
+        (Lanczos(pixel_size=8), "LA", "LA"),
+        (Bilinear(pixel_size=8), "RGB", "RGB"),
+        (Bilinear(pixel_size=8), "RGBA", "RGBA"),
+        (Bilinear(pixel_size=8), "LA", "LA"),
+        (Bicubic(pixel_size=8), "RGB", "RGB"),
+        (Bicubic(pixel_size=8), "RGBA", "RGBA"),
+        (Bicubic(pixel_size=8), "LA", "LA"),
+        (MeanBlock(pixel_size=8), "RGB", "RGB"),
+        (MeanBlock(pixel_size=8), "RGBA", "RGBA"),
+        (MeanBlock(pixel_size=8), "LA", "RGBA"),
+    ],
+)
+def test_algorithms_image_mode(algorithm, input_mode, output_mode):
+    image = Image.new("RGB", (64, 64), "red")
+    image = image.convert(input_mode)
+    result = algorithm.apply(image)
+
+    assert isinstance(result, Image.Image)
+    assert result is not image
+    assert result.size == image.size
+    assert result.mode == output_mode
+
+
+@pytest.mark.parametrize(
     "algorithm",
     [
         NearestNeighbor(pixel_size=1),
