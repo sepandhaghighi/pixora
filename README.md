@@ -94,6 +94,7 @@ The following examples use the same [input image](https://github.com/sepandhaghi
 | `Bicubic` | Pixelate using bicubic resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/bicubic.png" width="300"> |
 | `Lanczos` | Pixelate using Lanczos resampling | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/lanczos.png" width="300"> |
 | `MeanBlock` | Pixelate by calculating the mean RGB color of each block | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/mean-block.png" width="300"> |
+| `ModeBlock` | Pixelate by replacing each block with its most frequent color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/mode-block.png" width="300"> |
 
 ## Issues & Bug Reports			
 
