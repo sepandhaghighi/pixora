@@ -2,7 +2,7 @@
 
 from unittest.mock import patch
 import pytest
-from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock
+from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock, MedianBlock
 from pixora.cli import (
     _build_parser,
     _print_pixora_info,
@@ -124,6 +124,18 @@ def test_print_pixora_info(mock_print, mock_tprint):
         (
             ["input.png", "output.png", "--algorithm", "mode-block", "--pixel-size", "16"],
             ModeBlock,
+            16,
+            False,
+        ),
+         (
+            ["input.png", "output.png", "--algorithm", "median-block"],
+            MedianBlock,
+            8,
+            False,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "median-block", "--pixel-size", "16"],
+            MedianBlock,
             16,
             False,
         ),

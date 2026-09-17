@@ -3,7 +3,7 @@
 from PIL import Image
 import pytest
 
-from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock
+from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock, MedianBlock
 
 
 @pytest.mark.parametrize(
@@ -15,6 +15,7 @@ from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeB
         Bicubic(pixel_size=8),
         MeanBlock(pixel_size=8),
         ModeBlock(pixel_size=8),
+        MedianBlock(pixel_size=8),
     ],
 )
 def test_algorithms_apply_returns_new_image(algorithm):
@@ -49,6 +50,9 @@ def test_algorithms_apply_returns_new_image(algorithm):
         (ModeBlock(pixel_size=8), "RGB", "RGB"),
         (ModeBlock(pixel_size=8), "RGBA", "RGBA"),
         (ModeBlock(pixel_size=8), "LA", "RGBA"),
+        (MedianBlock(pixel_size=8), "RGB", "RGB"),
+        (MedianBlock(pixel_size=8), "RGBA", "RGBA"),
+        (MedianBlock(pixel_size=8), "LA", "RGBA"),
     ],
 )
 def test_algorithms_image_mode(algorithm, input_mode, output_mode):
@@ -83,6 +87,9 @@ def test_algorithms_image_mode(algorithm, input_mode, output_mode):
         ModeBlock(pixel_size=1),
         ModeBlock(pixel_size=8),
         ModeBlock(pixel_size=32),
+        MedianBlock(pixel_size=1),
+        MedianBlock(pixel_size=8),
+        MedianBlock(pixel_size=32),
     ],
 )
 def test_algorithms_preserve_image_size(algorithm):
@@ -108,6 +115,8 @@ def test_algorithms_preserve_image_size(algorithm):
         (MeanBlock(pixel_size=16), 16),
         (ModeBlock(pixel_size=4), 4),
         (ModeBlock(pixel_size=16), 16),
+        (MedianBlock(pixel_size=4), 4),
+        (MedianBlock(pixel_size=16), 16),
     ],
 )
 def test_algorithms_store_pixel_size(algorithm, pixel_size):
