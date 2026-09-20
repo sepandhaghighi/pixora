@@ -127,7 +127,7 @@ def test_print_pixora_info(mock_print, mock_tprint):
             16,
             False,
         ),
-         (
+        (
             ["input.png", "output.png", "--algorithm", "median-block"],
             MedianBlock,
             8,
