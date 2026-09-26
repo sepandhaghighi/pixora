@@ -36,8 +36,14 @@ class Bicubic(Algorithm):
             pixel_size=self._pixel_size,
         )
 
-        image = image.resize((small_width, small_height), Image.Resampling.BICUBIC)
+        image = image.resize(
+            (small_width, small_height),
+            Image.Resampling.BICUBIC
+        )
 
-        image = image.resize((width, height), Image.Resampling.NEAREST)
+        image = image.resize(
+            (width, height),
+            Image.Resampling.NEAREST
+        )
 
         return image
