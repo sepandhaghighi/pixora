@@ -2,7 +2,7 @@
 """pixora median-block algorithm."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Tuple
 from PIL import Image
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
@@ -10,11 +10,7 @@ from .base import Algorithm
 
 
 class MedianBlock(Algorithm):
-    """
-    Pixelate an image by replacing each block with its median color.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image by replacing each block with its median color."""
 
     def __init__(
             self,
@@ -33,7 +29,7 @@ class MedianBlock(Algorithm):
             left: int,
             top: int,
             right: int,
-            bottom: int):
+            bottom: int) -> Tuple[int, int, int]:
         """
         Calculate the median color of a pixel block.
 

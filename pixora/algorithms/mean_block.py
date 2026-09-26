@@ -2,7 +2,7 @@
 """pixora mean-block algorithm."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Tuple
 from PIL import Image
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
@@ -10,11 +10,7 @@ from .base import Algorithm
 
 
 class MeanBlock(Algorithm):
-    """
-    Pixelate an image by replacing each block with its mean RGB color.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image by replacing each block with its mean RGB color."""
 
     def __init__(
             self,
@@ -34,7 +30,7 @@ class MeanBlock(Algorithm):
             top: int,
             right: int,
             bottom: int,
-            mode: str):
+            mode: str) -> Tuple[int, int, int]:
         """
         Calculate the mean color of a pixel block.
 
