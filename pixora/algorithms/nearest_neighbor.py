@@ -9,11 +9,7 @@ from .base import Algorithm
 
 
 class NearestNeighbor(Algorithm):
-    """
-    Pixelate an image using nearest-neighbor resampling.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image using nearest-neighbor resampling."""
 
     def __init__(
             self,
