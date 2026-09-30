@@ -9,11 +9,7 @@ from .base import Algorithm
 
 
 class Bicubic(Algorithm):
-    """
-    Pixelate an image using bicubic resampling.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image using bicubic resampling."""
 
     def __init__(
             self,
@@ -42,12 +38,12 @@ class Bicubic(Algorithm):
 
         image = image.resize(
             (small_width, small_height),
-            Image.Resampling.BICUBIC,
+            Image.Resampling.BICUBIC
         )
 
         image = image.resize(
             (width, height),
-            Image.Resampling.NEAREST,
+            Image.Resampling.NEAREST
         )
 
         return image

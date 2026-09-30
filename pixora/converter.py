@@ -12,13 +12,7 @@ from .functions import _validate_path, _validate_image_input
 
 
 class Converter:
-    """
-    Convert images into pixel art using different algorithms.
-
-    Parameters
-    ----------
-    algorithm : conversion algorithm
-    """
+    """Convert images into pixel art using different algorithms."""
 
     def __init__(self, algorithm: Optional[Algorithm] = None) -> None:
         """

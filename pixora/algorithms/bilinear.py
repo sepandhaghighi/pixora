@@ -9,11 +9,7 @@ from .base import Algorithm
 
 
 class Bilinear(Algorithm):
-    """
-    Pixelate an image using bilinear resampling.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image using bilinear resampling."""
 
     def __init__(
             self,

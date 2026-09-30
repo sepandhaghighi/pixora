@@ -9,11 +9,7 @@ from .base import Algorithm
 
 
 class Lanczos(Algorithm):
-    """
-    Pixelate an image using Lanczos resampling.
-
-    :param pixel_size: pixel size
-    """
+    """Pixelate an image using Lanczos resampling."""
 
     def __init__(
             self,
