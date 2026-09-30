@@ -2,7 +2,7 @@
 """pixora mean-block algorithm."""
 
 from __future__ import annotations
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 from PIL import Image
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
@@ -30,7 +30,7 @@ class MeanBlock(Algorithm):
             top: int,
             right: int,
             bottom: int,
-            mode: str) -> Tuple[int, int, int]:
+            mode: str) -> Union[Tuple[int, int, int], Tuple[int, int, int, int]]:
         """
         Calculate the mean color of a pixel block.
 

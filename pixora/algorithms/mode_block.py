@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections import Counter
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 from PIL import Image
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
@@ -30,7 +30,7 @@ class ModeBlock(Algorithm):
             left: int,
             top: int,
             right: int,
-            bottom: int) -> Tuple[int, int, int]:
+            bottom: int) -> Union[Tuple[int, int, int], Tuple[int, int, int, int]]:
         """
         Calculate the most frequent color of a pixel block.
 

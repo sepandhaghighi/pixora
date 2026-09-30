@@ -2,7 +2,7 @@
 """pixora median-block algorithm."""
 
 from __future__ import annotations
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 from PIL import Image
 from ..functions import _validate_pixel_size
 from ..params import DEFAULT_PIXEL_SIZE
@@ -29,7 +29,7 @@ class MedianBlock(Algorithm):
             left: int,
             top: int,
             right: int,
-            bottom: int) -> Tuple[int, int, int]:
+            bottom: int) -> Union[Tuple[int, int, int], Tuple[int, int, int, int]]:
         """
         Calculate the median color of a pixel block.
 
