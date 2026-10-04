@@ -96,6 +96,7 @@ The following examples use the same [input image](https://github.com/sepandhaghi
 | `MeanBlock` | Pixelate by calculating the mean RGB color of each block | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/mean-block.png" width="300"> |
 | `ModeBlock` | Pixelate by replacing each block with its most frequent color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/mode-block.png" width="300"> |
 | `MedianBlock` | Pixelate by replacing each block with its median RGB color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/median-block.png" width="300"> |
+| `MaxBlock` | Pixelate by replacing each block with its brightest RGB color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/max-block.png" width="300"> |
 
 ## Issues & Bug Reports			
 
