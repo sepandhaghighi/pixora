@@ -39,7 +39,7 @@ class MaxBlock(Algorithm):
         :param right: right block coordinate
         :param bottom: bottom block coordinate
         """
-        brightest = None
+        brightest_pixel = None
         brightest_value = -1
 
         for y in range(top, bottom):
@@ -49,10 +49,10 @@ class MaxBlock(Algorithm):
                 brightness = sum(rgb)
 
                 if brightness > brightest_value:
-                    brightest = pixel
+                    brightest_pixel = pixel
                     brightest_value = brightness
 
-        return brightest
+        return brightest_pixel
 
     def apply(self, image: Image.Image) -> Image.Image:
         """
