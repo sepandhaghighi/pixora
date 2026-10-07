@@ -9,6 +9,7 @@ from .bicubic import Bicubic
 from .mean_block import MeanBlock
 from .mode_block import ModeBlock
 from .median_block import MedianBlock
+from .max_block import MaxBlock
 
 __all__ = [
     "Algorithm",
@@ -18,5 +19,6 @@ __all__ = [
     "Bicubic",
     "MeanBlock",
     "ModeBlock",
-    "MedianBlock"
+    "MedianBlock",
+    "MaxBlock",
 ]
