@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """pixora modules."""
 from .params import PIXORA_VERSION
-from .algorithms import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock, MedianBlock, MaxBlock
+from .algorithms import NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
 from .converter import Converter, pixelize
 from .errors import PixoraError, PixoraImageError, PixoraValidationError
 
@@ -21,4 +21,5 @@ __all__ = [
     "ModeBlock",
     "MedianBlock",
     "MaxBlock",
+    "MinBlock",
 ]
