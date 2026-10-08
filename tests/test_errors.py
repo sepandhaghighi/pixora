@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from PIL import Image
 from pixora import NearestNeighbor, Bilinear, Bicubic, Lanczos
-from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, Converter
+from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, Converter
 from pixora import PixoraError, PixoraImageError, PixoraValidationError
 
 
@@ -85,6 +85,12 @@ def test_converter_rejects_invalid_pixel_size_types7(pixel_size):
 def test_converter_rejects_invalid_pixel_size_types8(pixel_size):
     with pytest.raises(PixoraValidationError):
         Converter(MaxBlock(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types9(pixel_size):
+    with pytest.raises(PixoraValidationError):
+        Converter(MinBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])
