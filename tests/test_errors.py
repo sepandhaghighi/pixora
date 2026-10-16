@@ -35,67 +35,67 @@ def test_validation_error_is_caught_as_value_error():
 
 @pytest.mark.parametrize("pixel_size", [0, -1, -5])
 def test_converter_rejects_invalid_pixel_size_values(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be greater than zero."):
         Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types1(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types2(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(Bilinear(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types3(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(Bicubic(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types4(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(Lanczos(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types5(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(MeanBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types6(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(ModeBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types7(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(MedianBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types8(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(MaxBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types9(pixel_size):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
         Converter(MinBlock(pixel_size=pixel_size))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])
 def test_convert_invalid_input_type(image):
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Expected a PIL.Image.Image instance."):
         Converter().convert(image)
 
 
@@ -134,5 +134,5 @@ def test_converter_save_propagates_save_error():
 
 
 def test_converter_invalid_algorithm():
-    with pytest.raises(PixoraValidationError):
+    with pytest.raises(PixoraValidationError, match=r"Expected an instance of pixora.algorithms.Algorithm."):
         Converter(algorithm="nearest")
