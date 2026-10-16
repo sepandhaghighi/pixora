@@ -10,6 +10,7 @@ from .mean_block import MeanBlock
 from .mode_block import ModeBlock
 from .median_block import MedianBlock
 from .max_block import MaxBlock
+from .min_block import MinBlock
 
 __all__ = [
     "Algorithm",
@@ -21,4 +22,5 @@ __all__ = [
     "ModeBlock",
     "MedianBlock",
     "MaxBlock",
+    "MinBlock",
 ]
