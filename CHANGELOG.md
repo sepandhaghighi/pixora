@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `MinBlock` algorithm
 ### Changed
 - `Python 3.15` added to `test.yml`
+- Build system modified
 - Test system modified
 - `README.md` updated
 ## [0.4] - 2026-10-02
