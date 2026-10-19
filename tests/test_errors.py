@@ -41,7 +41,7 @@ def test_converter_rejects_invalid_pixel_size_values(pixel_size):
 
 @pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
 def test_converter_rejects_invalid_pixel_size_types1(pixel_size):
-    with pytest.raises(PixoraValidationError, match=r"Pixel size must be an integer."):
+    with pytest.raises(PixoraValidationError, match="Pixel size must be an integer."):
         Converter(NearestNeighbor(pixel_size=pixel_size))
 
 
@@ -134,5 +134,5 @@ def test_converter_save_propagates_save_error():
 
 
 def test_converter_invalid_algorithm():
-    with pytest.raises(PixoraValidationError, match=r"Expected an instance of pixora.algorithms.Algorithm."):
+    with pytest.raises(PixoraValidationError, match="Expected an instance of pixora.algorithms.Algorithm."):
         Converter(algorithm="nearest")
