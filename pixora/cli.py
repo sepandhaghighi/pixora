@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Optional, List
 import argparse
 from art import tprint
-from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
+from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic, Box, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
@@ -15,6 +15,7 @@ ALGORITHMS = {
     "lanczos": Lanczos,
     "bilinear": Bilinear,
     "bicubic": Bicubic,
+    "box": Box,
     "mean-block": MeanBlock,
     "mode-block": ModeBlock,
     "median-block": MedianBlock,

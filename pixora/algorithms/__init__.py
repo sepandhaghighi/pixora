@@ -6,6 +6,7 @@ from .nearest_neighbor import NearestNeighbor
 from .lanczos import Lanczos
 from .bilinear import Bilinear
 from .bicubic import Bicubic
+from .box import Box
 from .mean_block import MeanBlock
 from .mode_block import ModeBlock
 from .median_block import MedianBlock
@@ -18,6 +19,7 @@ __all__ = [
     "Lanczos",
     "Bilinear",
     "Bicubic",
+    "Box",
     "MeanBlock",
     "ModeBlock",
     "MedianBlock",
