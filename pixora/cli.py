@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Optional, List
 import argparse
 from art import tprint
-from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic, Box, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
+from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic, Box, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, RandomBlock
 from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
@@ -21,6 +21,7 @@ ALGORITHMS = {
     "median-block": MedianBlock,
     "max-block": MaxBlock,
     "min-block": MinBlock,
+    "random-block": RandomBlock,
 }
 
 
@@ -38,6 +39,12 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("output", nargs="?", metavar="OUTPUT", help="Output image.")
     parser.add_argument("-i", "--input", dest="input_opt", metavar="INPUT", help="Input image.")
     parser.add_argument("-o", "--output", dest="output_opt", metavar="OUTPUT", help="Output image.")
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Random seed for reproducible random-block pixelization.",
+    )
     parser.add_argument(
         "-p",
         "--pixel-size",
@@ -78,14 +85,22 @@ def _resolve_argument(
     return value
 
 
-def _create_algorithm(name: str, pixel_size: int) -> Algorithm:
+def _create_algorithm(
+        name: str,
+        pixel_size: int,
+        seed: Optional[int] = None) -> Algorithm:
     """
     Create a pixelization algorithm.
 
     :param name: algorithm name
     :param pixel_size: pixel size
+    :param seed: optional random seed
     """
     algorithm_class = ALGORITHMS[name]
+
+    if name == "random-block":
+        return algorithm_class(pixel_size=pixel_size, seed=seed)
+
     return algorithm_class(pixel_size=pixel_size)
 
 
@@ -103,7 +118,11 @@ def main(argv: Optional[List[str]] = None) -> None:
     input_image = _resolve_argument(parser, args.input, args.input_opt, "input")
     output_image = _resolve_argument(parser, args.output, args.output_opt, "output")
     try:
-        algorithm = _create_algorithm(name=args.algorithm, pixel_size=args.pixel_size)
+        algorithm = _create_algorithm(
+            name=args.algorithm,
+            pixel_size=args.pixel_size,
+            seed=args.seed,
+        )
         pixelize(input_image, output=output_image, algorithm=algorithm, grayscale=args.grayscale)
     except PixoraError as exc:
         parser.exit(1, f"Error: {exc}\n")

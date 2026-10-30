@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from PIL import Image
 from pixora import NearestNeighbor, Bilinear, Bicubic, Lanczos, Box
-from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, Converter
+from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, RandomBlock, Converter
 from pixora import PixoraError, PixoraImageError, PixoraValidationError
 
 
@@ -97,6 +97,18 @@ def test_converter_rejects_invalid_pixel_size_types9(pixel_size):
 def test_converter_rejects_invalid_pixel_size_types10(pixel_size):
     with pytest.raises(PixoraValidationError, match="Pixel size must be an integer."):
         Converter(Box(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("pixel_size", ["8", 8.5, None, [], {}, object(), True, False])
+def test_converter_rejects_invalid_pixel_size_types11(pixel_size):
+    with pytest.raises(PixoraValidationError, match="Pixel size must be an integer."):
+        Converter(RandomBlock(pixel_size=pixel_size))
+
+
+@pytest.mark.parametrize("seed", ["42", 8.5, [], {}, object(), True, False])
+def test_random_block_rejects_invalid_seed_types(seed):
+    with pytest.raises(PixoraValidationError, match="Seed must be an integer or None."):
+        Converter(RandomBlock(seed=seed))
 
 
 @pytest.mark.parametrize("image", [None, 1, [], {}, object()])

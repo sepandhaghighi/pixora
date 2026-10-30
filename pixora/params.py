@@ -11,6 +11,7 @@ DEFAULT_PIXEL_SIZE = 8
 
 PIXEL_SIZE_TYPE_ERROR = "Pixel size must be an integer."
 PIXEL_SIZE_VALUE_ERROR = "Pixel size must be greater than zero."
+SEED_VALUE_ERROR = "Seed must be an integer or None."
 
 IMAGE_SAVE_ERROR = "Failed to save image: {path}"
 IMAGE_TYPE_ERROR = "Expected a PIL.Image.Image instance."

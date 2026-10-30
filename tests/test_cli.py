@@ -3,7 +3,7 @@
 from unittest.mock import patch
 import pytest
 from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, Box
-from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
+from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, RandomBlock
 from pixora.cli import (
     _build_parser,
     _print_pixora_info,
@@ -177,6 +177,18 @@ def test_print_pixora_info(mock_print, mock_tprint):
             False,
         ),
         (
+            ["input.png", "output.png", "--algorithm", "random-block"],
+            RandomBlock,
+            8,
+            False,
+        ),
+        (
+            ["input.png", "output.png", "--algorithm", "random-block", "--pixel-size", "16", "--seed", "42"],
+            RandomBlock,
+            16,
+            False,
+        ),
+        (
             ["input.png", "output.png", "--grayscale"],
             NearestNeighbor,
             8,
@@ -204,6 +216,8 @@ def test_main_algorithm(
 
     assert isinstance(result_algorithm, algorithm)
     assert result_algorithm._pixel_size == pixel_size
+    if isinstance(result_algorithm, RandomBlock):
+        assert result_algorithm._seed == (42 if "--seed" in arguments else None)
 
 
 @patch("pixora.cli.pixelize", side_effect=PixoraError("failure"))
@@ -241,3 +255,13 @@ def test_main_missing_arguments():
 def test_main_missing_output():
     with pytest.raises(SystemExit):
         main(["input.png"])
+
+
+def test_main_rejects_invalid_seed():
+    with pytest.raises(SystemExit):
+        main([
+            "input.png",
+            "output.png",
+            "--algorithm", "random-block",
+            "--seed", "invalid",
+        ])

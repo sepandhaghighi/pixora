@@ -12,6 +12,7 @@ from .mode_block import ModeBlock
 from .median_block import MedianBlock
 from .max_block import MaxBlock
 from .min_block import MinBlock
+from .random_block import RandomBlock
 
 __all__ = [
     "Algorithm",
@@ -25,4 +26,5 @@ __all__ = [
     "MedianBlock",
     "MaxBlock",
     "MinBlock",
+    "RandomBlock",
 ]

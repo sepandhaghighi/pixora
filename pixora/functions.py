@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Tuple, Union, Any
 from pathlib import Path
 from PIL import Image
-from .params import PIXEL_SIZE_TYPE_ERROR, PIXEL_SIZE_VALUE_ERROR
+from .params import PIXEL_SIZE_TYPE_ERROR, PIXEL_SIZE_VALUE_ERROR, SEED_VALUE_ERROR
 from .params import IMAGE_TYPE_ERROR, IMAGE_INPUT_TYPE_ERROR, IMAGE_SAVE_ERROR
 from .params import PATH_TYPE_ERROR, IMAGE_NOT_FOUND_ERROR, UNSUPPORTED_IMAGE_ERROR
 from .errors import PixoraImageError, PixoraValidationError
@@ -59,6 +59,16 @@ def _validate_pixel_size(pixel_size: Any) -> None:
         raise PixoraValidationError(PIXEL_SIZE_TYPE_ERROR)
     if pixel_size <= 0:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
+
+
+def _validate_seed(seed: Any) -> None:
+    """
+    Validate a random seed.
+
+    :param seed: random seed
+    """
+    if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
+        raise PixoraValidationError(SEED_VALUE_ERROR)
 
 
 def _validate_image(image: Any) -> None:
