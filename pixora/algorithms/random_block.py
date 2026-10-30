@@ -4,7 +4,7 @@
 from __future__ import annotations
 import random
 from PIL import Image
-from ..functions import _validate_pixel_size
+from ..functions import _validate_pixel_size, _validate_seed
 from ..params import DEFAULT_PIXEL_SIZE
 from .base import Algorithm
 
