@@ -61,6 +61,16 @@ def _validate_pixel_size(pixel_size: Any) -> None:
         raise PixoraValidationError(PIXEL_SIZE_VALUE_ERROR)
 
 
+def _validate_seed(seed: Any) -> None:
+    """
+    Validate a random seed.
+
+    :param seed: random seed
+    """
+    if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
+        raise PixoraValidationError("Seed must be an integer or None.")
+
+
 def _validate_image(image: Any) -> None:
     """
     Validate a Pillow image.
