@@ -4,7 +4,7 @@ from PIL import Image
 import pytest
 
 from pixora import NearestNeighbor, Lanczos, Bilinear, Bicubic, Box
-from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
+from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, RandomBlock
 
 
 @pytest.mark.parametrize(
@@ -20,6 +20,7 @@ from pixora import MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock
         MedianBlock(pixel_size=8),
         MaxBlock(pixel_size=8),
         MinBlock(pixel_size=8),
+        RandomBlock(pixel_size=8),
     ],
 )
 def test_algorithms_apply_returns_new_image(algorithm):
@@ -66,6 +67,9 @@ def test_algorithms_apply_returns_new_image(algorithm):
         (MinBlock(pixel_size=8), "RGB", "RGB"),
         (MinBlock(pixel_size=8), "RGBA", "RGBA"),
         (MinBlock(pixel_size=8), "LA", "RGBA"),
+        (RandomBlock(pixel_size=8), "RGB", "RGB"),
+        (RandomBlock(pixel_size=8), "RGBA", "RGBA"),
+        (RandomBlock(pixel_size=8), "LA", "RGBA"),
     ],
 )
 def test_algorithms_image_mode(algorithm, input_mode, output_mode):
@@ -112,6 +116,9 @@ def test_algorithms_image_mode(algorithm, input_mode, output_mode):
         MinBlock(pixel_size=1),
         MinBlock(pixel_size=8),
         MinBlock(pixel_size=32),
+        RandomBlock(pixel_size=1),
+        RandomBlock(pixel_size=8),
+        RandomBlock(pixel_size=32),
     ],
 )
 def test_algorithms_preserve_image_size(algorithm):
@@ -145,7 +152,26 @@ def test_algorithms_preserve_image_size(algorithm):
         (MaxBlock(pixel_size=16), 16),
         (MinBlock(pixel_size=4), 4),
         (MinBlock(pixel_size=16), 16),
+        (RandomBlock(pixel_size=4), 4),
+        (RandomBlock(pixel_size=16), 16),
     ],
 )
 def test_algorithms_store_pixel_size(algorithm, pixel_size):
     assert algorithm._pixel_size == pixel_size
+
+
+def test_random_block_seed_reproducibility():
+    image = Image.new("RGB", (64, 64), "red")
+    first = RandomBlock(pixel_size=8, seed=42).apply(image)
+    second = RandomBlock(pixel_size=8, seed=42).apply(image)
+    assert list(first.getdata()) == list(second.getdata())
+
+
+def test_random_block_different_seeds_can_produce_different_images():
+    image = Image.new("RGB", (16, 16))
+    for y in range(16):
+        for x in range(16):
+            image.putpixel((x, y), (x * 16, y * 16, (x + y) * 8))
+    first = RandomBlock(pixel_size=8, seed=1).apply(image)
+    second = RandomBlock(pixel_size=8, seed=2).apply(image)
+    assert list(first.getdata()) != list(second.getdata())

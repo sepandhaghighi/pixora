@@ -67,8 +67,10 @@ Pixora is a lightweight Python library and command-line tool for converting ordi
 from pixora import NearestNeighbor, Lanczos
 from pixora import pixelize
 pixelize("input.png", output="output.png", algorithm=NearestNeighbor(pixel_size=12))
-image = pixelize("input.png", algorithm=Lanczos(pixel_size=12), grayscale=True)
-image.show()
+image1 = pixelize("input.png", algorithm=Lanczos(pixel_size=12), grayscale=True)
+image1.show()
+image2 = pixelize("input.png", algorithm=RandomBlock(pixel_size=8, seed=42))
+image2.show()
 ```
 
 ### CLI
@@ -81,6 +83,8 @@ pixora input.png output.png --pixel-size=12
 pixora input.png output.png --algorithm="bilinear"
 
 pixora input.png output.png --grayscale
+
+pixora input.png output.png --algorithm="random-block" --pixel-size=8 --seed=42
 ```
 
 ### Available Algorithms
@@ -99,6 +103,7 @@ The following examples use the same [input image](https://github.com/sepandhaghi
 | `MedianBlock` | Pixelate by replacing each block with its median RGB color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/median-block.png" width="300"> |
 | `MaxBlock` | Pixelate by replacing each block with its brightest RGB color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/max-block.png" width="300"> |
 | `MinBlock` | Pixelate by replacing each block with its darkest RGB color | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/min-block.png" width="300"> |
+| `RandomBlock` | Pixelate by filling each block with the color of a randomly selected pixel | <img src="https://github.com/sepandhaghighi/pixora/raw/main/otherfiles/examples/random-block.png" width="300"> |
 
 ## Issues & Bug Reports			
 
