@@ -43,7 +43,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "--seed",
         type=int,
         default=None,
-        help="Random seed for reproducible random-block pixelization.",
+        help="Random seed for reproducible pixelization.",
     )
     parser.add_argument(
         "-p",
@@ -94,7 +94,7 @@ def _create_algorithm(
 
     :param name: algorithm name
     :param pixel_size: pixel size
-    :param seed: optional random seed
+    :param seed: random seed
     """
     algorithm_class = ALGORITHMS[name]
 
