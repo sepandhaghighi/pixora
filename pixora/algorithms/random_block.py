@@ -20,7 +20,7 @@ class RandomBlock(Algorithm):
         Initialize random-block algorithm.
 
         :param pixel_size: pixel size
-        :param seed: optional seed for reproducible random selections
+        :param seed: random seed
         """
         _validate_pixel_size(pixel_size)
         _validate_seed(seed)
