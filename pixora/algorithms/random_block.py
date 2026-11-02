@@ -5,7 +5,7 @@ from __future__ import annotations
 import random
 from PIL import Image
 from ..functions import _validate_pixel_size, _validate_seed
-from ..params import DEFAULT_PIXEL_SIZE
+from ..params import DEFAULT_PIXEL_SIZE, DEFAULT_SEED
 from .base import Algorithm
 
 
@@ -15,7 +15,7 @@ class RandomBlock(Algorithm):
     def __init__(
             self,
             pixel_size: int = DEFAULT_PIXEL_SIZE,
-            seed: int = None) -> None:
+            seed: int = DEFAULT_SEED) -> None:
         """
         Initialize random-block algorithm.
 
