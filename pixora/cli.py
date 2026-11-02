@@ -5,7 +5,7 @@ from typing import Optional, List
 import argparse
 from art import tprint
 from .algorithms import Algorithm, NearestNeighbor, Lanczos, Bilinear, Bicubic, Box, MeanBlock, ModeBlock, MedianBlock, MaxBlock, MinBlock, RandomBlock
-from .params import DEFAULT_PIXEL_SIZE, EXIT_MESSAGE
+from .params import DEFAULT_PIXEL_SIZE, DEFAULT_SEED, EXIT_MESSAGE
 from .params import PIXORA_VERSION, PIXORA_OVERVIEW
 from .converter import pixelize
 from .errors import PixoraError
@@ -42,7 +42,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--seed",
         type=int,
-        default=None,
+        default=DEFAULT_SEED,
         help="Random seed for reproducible pixelization.",
     )
     parser.add_argument(
@@ -88,7 +88,7 @@ def _resolve_argument(
 def _create_algorithm(
         name: str,
         pixel_size: int,
-        seed: Optional[int] = None) -> Algorithm:
+        seed: Optional[int]) -> Algorithm:
     """
     Create a pixelization algorithm.
 
