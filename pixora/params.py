@@ -8,6 +8,7 @@ and in-memory objects. Whether you are creating game assets, generating pixelate
 Pixora offers a fast, and easy-to-use solution for both scripts and terminal workflows.'''
 
 DEFAULT_PIXEL_SIZE = 8
+DEFAULT_SEED = None
 
 PIXEL_SIZE_TYPE_ERROR = "Pixel size must be an integer."
 PIXEL_SIZE_VALUE_ERROR = "Pixel size must be greater than zero."
